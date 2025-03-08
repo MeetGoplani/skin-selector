@@ -163,29 +163,32 @@ const SkinSelector = () => {
     }
   };
 
-  // Apply styles to ensure the entire page has a black background
+  // Apply styles to ensure the page has a black background but allow scrolling
   useEffect(() => {
     document.body.style.backgroundColor = '#000';
     document.body.style.margin = '0';
     document.body.style.padding = '0';
     document.body.style.minHeight = '100vh';
-    document.body.style.overflow = 'hidden';
+    // Remove overflow: hidden to allow scrolling
+    document.body.style.overflowX = 'hidden'; // Only prevent horizontal scrolling
+    document.body.style.overflowY = 'auto';   // Allow vertical scrolling
     
     return () => {
       document.body.style.backgroundColor = '';
       document.body.style.margin = '';
       document.body.style.padding = '';
       document.body.style.minHeight = '';
-      document.body.style.overflow = '';
+      document.body.style.overflowX = '';
+      document.body.style.overflowY = '';
     };
   }, []);
 
   return (
-    <div className="flex flex-col items-center min-h-screen w-full bg-black text-white overflow-y-auto pb-8 m-0">
+    <div className="flex flex-col items-center min-h-screen w-full bg-black text-white overflow-y-auto pb-16 m-0">
       <audio ref={audioRef} className="hidden" />
       
       {/* Header */}
-      <div className="w-full flex justify-between items-center px-4 pt-6">
+      <div className="w-full flex justify-between items-center px-4 pt-6 sticky top-0 bg-black z-10">
         <div className="w-16 md:w-32">
           {/* Left space */}
         </div>
@@ -202,41 +205,43 @@ const SkinSelector = () => {
       </div>
       
       {/* Tabs layout - 3x2 grid on small screens, original layout on larger screens */}
-      {screenSize === 'small' ? (
-        // Small screens: 3x2 grid (3 tabs per row, 2 rows)
-        <div className="grid grid-cols-3 gap-2 px-2 my-4 max-w-md mx-auto">
-          {tabs.map((tab) => (
-            <button
-              key={tab}
-              className={`py-2 px-3 text-xs rounded-md ${
-                activeTab === tab 
-                  ? 'bg-teal-400 text-black' 
-                  : 'bg-transparent text-cyan-400 border border-blue-800'
-              }`}
-              onClick={() => setActiveTab(tab)}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
-      ) : (
-        // Medium and large screens: keep the original layout
-        <div className="flex flex-row flex-wrap justify-center gap-2 px-2 my-4">
-          {tabs.map(tab => (
-            <button
-              key={tab}
-              className={`py-2 px-3 text-xs md:text-sm rounded-md ${
-                activeTab === tab 
-                  ? 'bg-teal-400 text-black' 
-                  : 'bg-transparent text-cyan-400 border border-blue-800'
-              }`}
-              onClick={() => setActiveTab(tab)}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
-      )}
+      <div className={`${screenSize === 'small' ? 'sticky' : ''} top-16 bg-black z-10 w-full py-2`}>
+        {screenSize === 'small' ? (
+          // Small screens: 3x2 grid (3 tabs per row, 2 rows)
+          <div className="grid grid-cols-3 gap-2 px-2 my-4 max-w-md mx-auto">
+            {tabs.map((tab) => (
+              <button
+                key={tab}
+                className={`py-2 px-3 text-xs rounded-md ${
+                  activeTab === tab 
+                    ? 'bg-teal-400 text-black' 
+                    : 'bg-transparent text-cyan-400 border border-blue-800'
+                }`}
+                onClick={() => setActiveTab(tab)}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+        ) : (
+          // Medium and large screens: keep the original layout
+          <div className="flex flex-row flex-wrap justify-center gap-2 px-2 my-4">
+            {tabs.map(tab => (
+              <button
+                key={tab}
+                className={`py-2 px-3 text-xs md:text-sm rounded-md ${
+                  activeTab === tab 
+                    ? 'bg-teal-400 text-black' 
+                    : 'bg-transparent text-cyan-400 border border-blue-800'
+                }`}
+                onClick={() => setActiveTab(tab)}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
       
       {/* Grid Layout - Adaptive based on screen size */}
       <div className={`grid ${
@@ -280,10 +285,13 @@ const SkinSelector = () => {
         ))}
       </div>
       
+      {/* Safe area at the bottom to ensure all content is accessible */}
+      <div className="h-16"></div>
+      
       {/* Responsive Popup */}
       {selectedSkin && (
-        <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-900 border-2 border-blue-800 rounded-lg p-3 sm:p-6 max-w-xs sm:max-w-sm md:max-w-md w-full max-h-screen overflow-y-auto">
+        <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4 overflow-y-auto">
+          <div className="bg-gray-900 border-2 border-blue-800 rounded-lg p-3 sm:p-6 max-w-xs sm:max-w-sm md:max-w-md w-full max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center mb-2 sm:mb-4">
               <h2 className="text-xl sm:text-2xl text-pink-600 font-bold truncate pr-2">{selectedSkin.id}</h2>
               <button 
