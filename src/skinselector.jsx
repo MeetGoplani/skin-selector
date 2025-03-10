@@ -316,7 +316,7 @@ const SkinSelector = () => {
             
             {/* Text label with silver gradient */}
             <div className="h-[30px] w-full flex items-center justify-center">
-              <p className="text-xs md:text-sm truncate animate-gradient bg-gradient-to-r from-gray-700 via-gray-100 to-gray-700 bg-clip-text text-transparent bg-[length:200%_100%]">
+              <p className="text-xs md:text-sm truncate animate-gradient bg-gradient-to-r from-cyan-600 via-cyan-100 to-cyan-600 bg-clip-text text-transparent bg-[length:200%_100%]">
                 {skin.id}
               </p>
             </div>
