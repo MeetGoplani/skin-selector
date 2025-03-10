@@ -311,7 +311,7 @@ const SkinSelector = () => {
                 playsInline
               />
             </div>
-            <p className="text-white text-sm sm:text-base">Details about {selectedSkin.id}</p>
+            <p className="text-white text-sm sm:text-base">This is {selectedSkin.id}</p>
           </div>
         </div>
       )}
