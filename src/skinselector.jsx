@@ -131,7 +131,7 @@ const SkinSelector = () => {
       const videoRef = videoRefs.current[skin.id];
       if (videoRef) {
         // Always show first frame of video
-        videoRef.currentTime = 0;
+        videoRef.currentTime = -3;
 
         if (!isMobile && hoveredItem === skin.id) {
           // On desktop, play video when hovered
