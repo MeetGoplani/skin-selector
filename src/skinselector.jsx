@@ -227,14 +227,14 @@ const SkinSelector = () => {
     currentSkins.forEach(skin => {
       const videoRef = videoRefs.current[skin.id];
       if (videoRef) {
-        if (isMobile) {
-          // On mobile, play video from start
-          videoRef.play().catch(e => console.error("Video playback failed:", e));
-        } else if (hoveredItem === skin.id) {
+        if (!isMobile && hoveredItem === skin.id) {
           // On desktop, play video when hovered
           videoRef.play().catch(e => console.error("Video playback failed:", e));
-        } else if (!isMobile) {
-          // Pause and reset when not hovered (desktop only)
+        } else if (isMobile && clickedItem === skin.id) {
+          // On mobile, play video when clicked once
+          videoRef.play().catch(e => console.error("Video playback failed:", e));
+        } else {
+          // Pause and reset when not hovered/clicked
           videoRef.pause();
           videoRef.currentTime = 0;
         }
