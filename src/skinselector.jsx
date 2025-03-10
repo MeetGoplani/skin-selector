@@ -1,6 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 const SkinSelector = () => {
+  // Add this at the beginning of your component, after the imports
+  useEffect(() => {
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes gradient {
+        0% { background-position: 0% 50%; }
+        100% { background-position: -200% 50%; }
+      }
+      .animate-gradient {
+        animation: gradient 3s linear infinite;
+      }
+    `;
+    document.head.appendChild(style);
+    return () => document.head.removeChild(style);
+  }, []);
+
   const [activeTab, setActiveTab] = useState('ALL');
   const [selectedSkin, setSelectedSkin] = useState(null);
   const [screenSize, setScreenSize] = useState('large');
@@ -273,9 +289,11 @@ const SkinSelector = () => {
               </div>
             </div>
             
-            {/* Text label */}
+            {/* Text label with silver gradient */}
             <div className="h-[30px] w-full flex items-center justify-center">
-              <p className="text-cyan-400 text-xs md:text-sm truncate">{skin.id}</p>
+              <p className="text-xs md:text-sm truncate animate-gradient bg-gradient-to-r from-gray-700 via-gray-100 to-gray-700 bg-clip-text text-transparent bg-[length:200%_100%]">
+                {skin.id}
+              </p>
             </div>
             
             {clickedItem === skin.id && isMobile && (
@@ -312,6 +330,7 @@ const SkinSelector = () => {
               />
             </div>
             <p className="text-white text-sm sm:text-base">This is {selectedSkin.id}</p>
+
           </div>
         </div>
       )}
