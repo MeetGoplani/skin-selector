@@ -246,7 +246,7 @@ const SkinSelector = () => {
       {/* Grid Layout - Adaptive based on screen size */}
       <div className={`grid ${
         screenSize === 'small' 
-          ? 'grid-cols-1' 
+          ? 'grid-cols-2' 
           : screenSize === 'medium' 
             ? 'grid-cols-2' 
             : 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4'
