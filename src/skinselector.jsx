@@ -130,32 +130,36 @@ const SkinSelector = () => {
     currentSkins.forEach(skin => {
       const videoRef = videoRefs.current[skin.id];
       if (videoRef) {
-        // Always show first frame of video
-        videoRef.currentTime = -3;
+        // Load and show first frame
+        videoRef.load();
+        videoRef.currentTime = 0;
+        // Ensure video is visible by playing and immediately pausing
+        const playPromise = videoRef.play().then(() => {
+          videoRef.pause();
+        }).catch(e => {
+          if (e.name !== 'AbortError') {
+            console.error("Video playback failed:", e);
+          }
+        });
 
         if (!isMobile && hoveredItem === skin.id) {
           // On desktop, play video when hovered
-          const playPromise = videoRef.play();
-          if (playPromise !== undefined) {
-            playPromise.catch(e => {
+          playPromise.then(() => {
+            videoRef.play().catch(e => {
               if (e.name !== 'AbortError') {
                 console.error("Video playback failed:", e);
               }
             });
-          }
+          });
         } else if (isMobile && clickedItem === skin.id) {
           // On mobile, play video when clicked once
-          const playPromise = videoRef.play();
-          if (playPromise !== undefined) {
-            playPromise.catch(e => {
+          playPromise.then(() => {
+            videoRef.play().catch(e => {
               if (e.name !== 'AbortError') {
                 console.error("Video playback failed:", e);
               }
             });
-          }
-        } else {
-          // Pause when not hovered/clicked but keep first frame visible
-          videoRef.pause();
+          });
         }
       }
     });
