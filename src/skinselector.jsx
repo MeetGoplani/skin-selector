@@ -10,23 +10,43 @@ const SkinSelector = () => {
         0% { background-position: 0% 50%; }
         100% { background-position: -200% 50%; }
       }
-      .animate-gradient {
-        animation: gradient 3s linear infinite;
-      }
       @keyframes spin {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
+      }
+      @keyframes shimmer {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+      }
+      .animate-gradient {
+        animation: gradient 3s linear infinite;
+      }
+      .shimmer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.08) 50%,
+          transparent 100%
+        );
+        animation: shimmer 1.5s infinite;
       }
     `;
     document.head.appendChild(style);
     return () => document.head.removeChild(style);
   }, []);
 
+  // Add this with other state variables at the top
   const [activeTab, setActiveTab] = useState("ALL");
   const [selectedSkin, setSelectedSkin] = useState(null);
   const [screenSize, setScreenSize] = useState("large");
   const [clickedItem, setClickedItem] = useState(null);
   const [hoveredItem, setHoveredItem] = useState(null);
+  const [loadedVideos, setLoadedVideos] = useState({}); // Add this line
   const audioRef = useRef(null);
   const videoRefs = useRef({});
 
@@ -261,7 +281,7 @@ const SkinSelector = () => {
                 className={`py-2 px-3 text-xs rounded-md ${
                   activeTab === tab
                     ? "bg-teal-400 text-black"
-                    : "bg-transparent text-cyan-400 border border-blue-800"
+                    : "bg-transparent text-cyan-400  border-blue-800 border-4"
                 }`}
                 onClick={() => setActiveTab(tab)}
               >
@@ -278,7 +298,7 @@ const SkinSelector = () => {
                 className={`py-2 px-3 text-xs md:text-sm rounded-md ${
                   activeTab === tab
                     ? "bg-teal-400 text-black"
-                    : "bg-transparent text-cyan-400 border border-blue-800"
+                    : "bg-transparent text-cyan-400  border-blue-800 border-4"
                 }`}
                 onClick={() => setActiveTab(tab)}
               >
@@ -302,7 +322,7 @@ const SkinSelector = () => {
         {getCurrentSkins().slice(0, visibleItems).map((skin) => (
           <div
             key={skin.id}
-            className="relative flex flex-col items-center border border-blue-800 rounded-lg p-1 cursor-pointer transition-transform hover:scale-105 w-full max-w-[170px] h-[200px]"
+            className="relative flex flex-col items-center border-4 border-blue-800 rounded-lg cursor-pointer transition-transform hover:scale-105 w-full max-w-[170px] h-[200px]"
             onClick={() => handleItemInteraction(skin)}
             onMouseEnter={() => handleMouseEnter(skin)}
             onMouseLeave={handleMouseLeave}
@@ -310,6 +330,7 @@ const SkinSelector = () => {
             {/* Preview Image container */}
             <div className="w-full h-[170px] relative">
               <div className="absolute inset-0 bg-black rounded-lg overflow-hidden">
+                {!loadedVideos[skin.id] && <div className="shimmer" />}
                 <video
                   ref={(el) => (videoRefs.current[skin.id] = el)}
                   src={skin.video}
@@ -317,12 +338,13 @@ const SkinSelector = () => {
                   muted
                   loop
                   playsInline
+                  onLoadedData={() => setLoadedVideos(prev => ({ ...prev, [skin.id]: true }))}
                 />
               </div>
             </div>
 
             {/* Text label with silver gradient */}
-            <div className="h-[30px] w-full flex items-center justify-center">
+            <div className="h-[30px] w-full flex items-center justify-center bg-blue-900">
               <p className="text-xs md:text-sm truncate animate-gradient bg-gradient-to-r from-cyan-600 via-cyan-100 to-cyan-600 bg-clip-text text-transparent bg-[length:200%_100%]">
                 {skin.id}
               </p>
@@ -358,14 +380,14 @@ const SkinSelector = () => {
       {/* Updated Responsive Popup */}
       {selectedSkin && (
         <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4 overflow-y-auto">
-          <div className="bg-gray-900 border-2 border-blue-800 rounded-lg p-3 sm:p-6 max-w-xs sm:max-w-sm md:max-w-md w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-gray-900 border-4 border-blue-800 rounded-lg   max-w-xs sm:max-w-sm md:max-w-md w-full max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center mb-2 sm:mb-4">
-              <h2 className="text-xl sm:text-2xl text-pink-600 font-bold truncate pr-2">
+              <h2 className="text-xl sm:text-2xl text-green-600 pl-4 font-bold truncate pr-4 ">
                 {selectedSkin.id}
               </h2>
-              <button
+              <button 
                 onClick={() => setSelectedSkin(null)}
-                className="text-cyan-400 hover:text-white text-lg sm:text-xl"
+                className="text-cyan-400 hover:text-white text-lg sm:text-xl mt-2 mr-5"
               >
                 ✕
               </button>
@@ -380,9 +402,17 @@ const SkinSelector = () => {
                 playsInline
               />
             </div>
-            <p className="text-white text-sm sm:text-base">
-              This is {selectedSkin.id}
-            </p>
+            <p>This is {selectedSkin.id}</p>
+              {selectedSkin.link && (
+                <a
+                  href={selectedSkin.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block text-cyan-400 hover:text-cyan-300 underline"
+                >
+                  View →
+                </a>
+              )}
           </div>
         </div>
       )}
