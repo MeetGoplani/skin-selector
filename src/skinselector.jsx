@@ -129,26 +129,20 @@ const SkinSelector = () => {
         videoRef.load();
         videoRef.currentTime = 0;
         videoRef.pause();
-        
-        
 
         if (!isMobile && hoveredItem === skin.id) {
           // On desktop, play video when hovered
-          
-            videoRef.play().catch((e) => {
-              if (e.name !== "AbortError") {
-                console.error("Video playback failed:", e);
-              }
-            });
-          
+          videoRef.play().catch((e) => {
+            if (e.name !== "AbortError") {
+              console.error("Video playback failed:", e);
+            }
+          });
         } else if (isMobile && clickedItem === skin.id) {
           // On mobile, play video when clicked once
-          playPromise.then(() => {
-            videoRef.play().catch((e) => {
-              if (e.name !== "AbortError") {
-                console.error("Video playback failed:", e);
-              }
-            });
+          videoRef.play().catch((e) => {
+            if (e.name !== "AbortError") {
+              console.error("Video playback failed:", e);
+            }
           });
         }
       }
@@ -157,12 +151,21 @@ const SkinSelector = () => {
 
   const handleItemInteraction = (skin) => {
     if (isMobile) {
-      // On mobile: first click plays audio and video, second click opens popup
       if (clickedItem === skin.id) {
+        // Second tap - open popup
         setSelectedSkin(skin);
-        setClickedItem(null); // Reset after opening popup
+        setClickedItem(null);
       } else {
+        // First tap - play video and audio
         setClickedItem(skin.id);
+        const videoRef = videoRefs.current[skin.id];
+        if (videoRef) {
+          videoRef.play().catch((e) => {
+            if (e.name !== "AbortError") {
+              console.error("Video playback failed:", e);
+            }
+          });
+        }
         playAudio(skin.audio);
       }
     } else {
@@ -246,25 +249,42 @@ const SkinSelector = () => {
 
   // Modify the grid layout section to include infinite scroll
   return (
-    <div className="flex flex-col items-center min-h-screen w-full bg-black text-white overflow-y-auto pb-16 m-0">
-      <audio ref={audioRef} className="hidden" />
-
-      {/* Header */}
-      <div className="w-full flex justify-between items-center px-4 pt-6 sticky top-0 bg-black z-10">
-        <div className="w-16 md:w-32">{/* Left space */}</div>
+    <>
+    {/* Header */}
+    <div className="w-full flex justify-between items-center px-0 pt-6 bg-black z-10">
+        <div className="w-16 md:w-32">
+          <img 
+            src="/images/percentage.gif" 
+            alt="Left Animation" 
+            className="w-16 h-16 md:w-48 md:h-48 fixed left-0 top-0"
+          />
+        </div>
 
         <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6 md:space-x-16">
-          <h1 className="text-2xl md:text-4xl font-bold text-pink-600">
+          <h1 className="text-2xl md:text-8xl font-bold text-[#e50046] ">
             SKINS
           </h1>
-          <button className="text-sm md:text-base">back</button>
-          <h1 className="text-2xl md:text-4xl font-bold text-pink-600">
+          <img  
+          src="/images/logo.png" 
+            alt="Right Animation" 
+            className="w-full h-48 -my-12 md:w-48 "/>
+          <h1 className="text-2xl md:text-6xl font-bold text-[#e50046] font-['Pastor_of_Muppets'] ">
             SOCIALS
           </h1>
         </div>
 
-        <div className="w-16 md:w-32">{/* Right space */}</div>
+        <div className="w-16 md:w-32">
+          <img 
+            src="/images/percentage.gif" 
+            alt="Right Animation" 
+            className="w-16 h-16 md:w-48 md:h-48 fixed right-0 top-0"
+          />
+        </div>
       </div>
+    <div className="flex flex-col items-center min-h-screen w-full bg-black text-white overflow-y-auto pb-16 m-0">
+      <audio ref={audioRef} className="hidden" />
+
+      
 
       {/* Tabs layout - 3x2 grid on small screens, original layout on larger screens */}
       <div
@@ -274,14 +294,14 @@ const SkinSelector = () => {
       >
         {screenSize === "small" ? (
           // Small screens: 3x2 grid (3 tabs per row, 2 rows)
-          <div className="grid grid-cols-3 gap-2 px-2 my-4 max-w-md mx-auto">
+          <div className="grid grid-cols-3 gap-2 px-2 my-4  max-w-md mx-auto">
             {tabs.map((tab) => (
               <button
                 key={tab}
                 className={`py-2 px-3 text-xs rounded-md ${
                   activeTab === tab
-                    ? "bg-teal-400 text-black"
-                    : "bg-transparent text-cyan-400  border-blue-800 border-4"
+                    ? "!bg-[#00ffce] text-black"
+                    : "bg-transparent text-cyan-400  border-[#0012ff] border-4"
                 }`}
                 onClick={() => setActiveTab(tab)}
               >
@@ -291,14 +311,14 @@ const SkinSelector = () => {
           </div>
         ) : (
           // Medium and large screens: keep the original layout
-          <div className="flex flex-row flex-wrap justify-center gap-2 px-2 my-4">
+          <div className="flex flex-row flex-wrap justify-center gap-2 px-2 my-[50px]">
             {tabs.map((tab) => (
               <button
                 key={tab}
                 className={`py-2 px-3 text-xs md:text-sm rounded-md ${
                   activeTab === tab
-                    ? "bg-teal-400 text-black"
-                    : "bg-transparent text-cyan-400  border-blue-800 border-4"
+                    ? "!bg-[#00ffce] text-black"
+                    : "bg-transparent text-cyan-400  border-[#0012ff] border-4"
                 }`}
                 onClick={() => setActiveTab(tab)}
               >
@@ -316,20 +336,20 @@ const SkinSelector = () => {
             ? "grid-cols-2"
             : screenSize === "medium"
             ? "grid-cols-2"
-            : "grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-        } gap-3 p-2 max-w-4xl mx-auto w-full place-items-center`}
+            : "grid-cols-2 md:grid-cols-4 lg:grid-cols-4"
+        } gap-5 p-2 mt-[60px] max-w-4xl mx-auto w-full place-items-center`}
       >
         {getCurrentSkins().slice(0, visibleItems).map((skin) => (
           <div
             key={skin.id}
-            className="relative flex flex-col items-center border-4 border-blue-800 rounded-lg cursor-pointer transition-transform hover:scale-105 w-full max-w-[170px] h-[200px]"
+            className="relative flex flex-1 size-full flex-col items-center border-4 border-[#0012ff] rounded-2xl cursor-pointer transition-transform hover:scale-105 w-full max-w-48 h-60"
             onClick={() => handleItemInteraction(skin)}
             onMouseEnter={() => handleMouseEnter(skin)}
             onMouseLeave={handleMouseLeave}
           >
             {/* Preview Image container */}
-            <div className="w-full h-[170px] relative">
-              <div className="absolute inset-0 bg-black rounded-lg overflow-hidden">
+            <div className="w-full h-full relative">
+              <div className="absolute inset-0 bg-black rounded-xl overflow-hidden">
                 {!loadedVideos[skin.id] && <div className="shimmer" />}
                 <video
                   ref={(el) => (videoRefs.current[skin.id] = el)}
@@ -344,7 +364,7 @@ const SkinSelector = () => {
             </div>
 
             {/* Text label with silver gradient */}
-            <div className="h-[30px] w-full flex items-center justify-center bg-blue-900">
+            <div className="h-[30px] w-full flex items-center justify-center bg-[#0012ff]">
               <p className="text-xs md:text-sm truncate animate-gradient bg-gradient-to-r from-cyan-600 via-cyan-100 to-cyan-600 bg-clip-text text-transparent bg-[length:200%_100%]">
                 {skin.id}
               </p>
@@ -379,20 +399,21 @@ const SkinSelector = () => {
 
       {/* Updated Responsive Popup */}
       {selectedSkin && (
-        <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4 overflow-y-auto">
-          <div className="bg-gray-900 border-4 border-blue-800 rounded-lg   max-w-xs sm:max-w-sm md:max-w-md w-full max-h-[90vh] overflow-y-auto">
-            <div className="flex justify-between items-center mb-2 sm:mb-4">
-              <h2 className="text-xl sm:text-2xl text-green-600 pl-4 font-bold truncate pr-4 ">
-                {selectedSkin.id}
-              </h2>
-              <button 
-                onClick={() => setSelectedSkin(null)}
-                className="text-cyan-400 hover:text-white text-lg sm:text-xl mt-2 mr-5"
-              >
-                ✕
-              </button>
-            </div>
-            <div className="aspect-square w-full mb-3 sm:mb-4">
+        <div className="fixed inset-0 bg-black bg-opacity-80 flex flex-col items-center justify-start sm:justify-center z-50 overflow-y-auto min-h-screen p-4">
+          <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md mb-4 mt-16 sm:mt-0">
+            <button 
+              onClick={() => setSelectedSkin(null)}
+              className="text-gray-300 !bg-black hover:text-white text-lg sm:text-xl absolute -left-20   -top-8"
+            >
+              ✕
+            </button>
+            <h2 className="text-xl sm:text-2xl text-[#00ffce] font-bold truncate text-center">
+              {selectedSkin.id}
+            </h2>
+          </div>
+          
+          <div className="bg-gray-900 border-4 border-[#0012ff] rounded-lg w-full max-w-xs sm:max-w-sm md:max-w-md">
+            <div className="aspect-square w-full">
               <video
                 src={selectedSkin.video}
                 className="w-full h-full object-cover rounded-lg"
@@ -402,21 +423,21 @@ const SkinSelector = () => {
                 playsInline
               />
             </div>
-            <p>This is {selectedSkin.id}</p>
-              {selectedSkin.link && (
-                <a
-                  href={selectedSkin.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block text-cyan-400 hover:text-cyan-300 underline"
-                >
-                  View →
-                </a>
-              )}
           </div>
+          {selectedSkin.link && (
+            <a
+              href={selectedSkin.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block !text-[#e5a700] hover:text-cyan-300 underline mt-4 break-all text-center w-full max-w-xs sm:max-w-sm md:max-w-md px-4"
+            >
+              {selectedSkin.link}
+            </a>
+          )}
         </div>
       )}
     </div>
+    </>
   );
 };
 

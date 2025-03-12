@@ -5,7 +5,7 @@ export const skinsByTab = {
         preview: "/images/OG/OG00.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0RecV0bRMCLW6upV1KAhok2JFiUEYHRQZntXGyD",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.launchmynft.io/collections/HpTP7Vy7TZRTp2yLqsRVsKeXihZTqDKJZzoiTpT82mqs/i2WJe6Bas4ydAE2jdVg0"
       },
       {
         id: "OG01",
@@ -779,7 +779,7 @@ export const skinsByTab = {
         preview: "/images/MILAURA/MILAURA182.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0RecjAb3qACLW6upV1KAhok2JFiUEYHRQZntXGy",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/DAJE4saFdToouCAqPDAqXx9AnZ3sow2MNqXKAnyGJ58B"
       },
 
       {
@@ -787,231 +787,231 @@ export const skinsByTab = {
         preview: "/images/MILAURA/MILAURA254.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Re5p0BlNYUXMuE3ThVrFqIzoy97pCajcbiGWe6",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/Hd79naoREBEEcTkxdhCbUycEC7KC2HCgPEpg2KyKFrEy"
       },
       {
         id: "MILAURA359",
         preview: "/images/MILAURA/MILAURA359.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReO54KUmjObq0Bov7V3hYN41tkmGaIxFfuDEUA",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/ApNEtNvak3Aj7Ubwt3cWx9s3x5GnsbhWzZwAmquv1KUC"
       },
       {
         id: "MILAURA671",
         preview: "/images/MILAURA/MILAURA671.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReNxC0PKFRPxdl0ivU7Juthn59rasg8SMzWfkK",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/3eZJRKMynQvdez7RAYmCAwp8PgfKUBGct9GCdbpWBwTF"
       },
       {
         id: "MILAURA959",
         preview: "/images/MILAURA/MILAURA959.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Re3BwCZME5uRjt7Thd2XmzCqP0oBZnGifrQ6vg",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/NiRbMZ12WFqosQdLyPfMFF2fPKdLk2T1LCzcNAMmJ2r"
       },
       {
         id: "MILAURA975",
         preview: "/images/MILAURA/MILAURA975.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Re7Yzf8LN9JFKEDQYCI8UzrToina6jWR4LqXcx",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/portfolio?wallet=8WaxTBpvAK2ght4F5K5ygFWrKXN6ANCN6Zotu9xr6His"
       },
       {
         id: "MILAURA1025",
         preview: "/images/MILAURA/MILAURA1025.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0RezEx0orBZD6xCpXVnPbOJgwhUelHBcjZt3ri8",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/FHy4g3W6oT32Z3YaCCAZwQutL8UnDdLuaWVMCEbAXiwV"
       },
       {
         id: "MILAURA1360",
         preview: "/images/MILAURA/MILAURA1360.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Re4DvVwkGLptP4fb3UuhsRv5BGCaVjWOxYcrgF",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/GzpPU8vijSeFtMLhbZRP4QANEg4T4DuEP8kUTqQAwtAB"
       },
       {
         id: "MILAURA1649",
         preview: "/images/MILAURA/MILAURA1649.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Rewx7iYwLHJm0vDtIG68hRWfg9yoMOxbjNuY5Z",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/HH1uPczZmubGym2ZxHMVuKbmtfXr8uBoycHr3Y3FLHf7"
       },
       {
         id: "MILAURA1685",
         preview: "/images/MILAURA/MILAURA1685.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReNcZzPrFRPxdl0ivU7Juthn59rasg8SMzWfkK",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/CEfBjn2WPJTP1t4uXW3dzeDZHziNa9V4pDJv1BUucupf"
       },
       {
         id: "MILAURA1689",
         preview: "/images/MILAURA/MILAURA1689.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReNihV1cFRPxdl0ivU7Juthn59rasg8SMzWfkK",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/9ef42KPcNZPjff3MJ5agPrArS73fF1VGr7BjDzux4dwm"
       },
       {
         id: "MILAURA1957",
         preview: "/images/MILAURA/MILAURA1957.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReS7Bw3dcFIeRZTq3GnsW8g4HbJyKdXpwNzEPj",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/5PPqMDRtUoCiLBWcPaMyF7w5XfUrrWv53Ng3GqJV7S1W"
       },
       {
         id: "MILAURA2018",
         preview: "/images/MILAURA/MILAURA2018.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReI51meGrXA9LTdsh5tJDrYvEqwM2clZFW4eop",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/zWYaiq4r3rQuZ63EdYGyKXg6tEnPhkfsUyg8wQMBtsR"
       },
       {
         id: "MILAURA2094",
         preview: "/images/MILAURA/MILAURA2094.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Re8yIrs4hFdHP0LE42QDWBthn3XVsIl9wZToAi",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/portfolio?wallet=8WaxTBpvAK2ght4F5K5ygFWrKXN6ANCN6Zotu9xr6His"
       },
       {
         id: "MILAURA2118",
         preview: "/images/MILAURA/MILAURA2118.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReL5BYUhiRq7vUbCXNn8S4feATtO5aZcsE9B6r",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/5gavuX9La4SNPj795HBqVPr2HNs8mmP6RjDZhvLQ9Rkw"
       },
       {
         id: "MILAURA2183",
         preview: "/images/MILAURA/MILAURA2183.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReLULCBZRq7vUbCXNn8S4feATtO5aZcsE9B6r1",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/vjF6eRmaHVarwtGfU6z7yggtZEPNPejcVk9TbyKtVyh"
       },
       {
         id: "MILAURA2245",
         preview: "/images/MILAURA/MILAURA2245.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReoV9gR7bLpTO5DgWeuSRUq1NfdtyK7bH3XF8m",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/4zWGWxSDqKYyir8RNrDrE3S6g3i48oLniyfjYwLyGnfu"
       },
       {
         id: "MILAURA2278",
         preview: "/images/MILAURA/MILAURA2278.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReCWsoFdOLS0KWZFlegrkIY36Nds9HuT8QvBz7",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/62osELgcyr23k4EJT3aVfawRsQdJqRHEA69eWP5dw2Tc"
       },
       {
         id: "MILAURA2293",
         preview: "/images/MILAURA/MILAURA2293.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Re98BLbDwNS2daBURM6WlupTQsgw8ILb1i4EYc",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/Fa2RV3EmM8Qbu9HxSBtTsCmRzRvL6WwpkQzpqf7yGdRz"
       },
       {
         id: "MILAURA2370",
         preview: "/images/MILAURA/MILAURA2370.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReSF0XRIcFIeRZTq3GnsW8g4HbJyKdXpwNzEPj",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/Hsc8YYiENibfD5z9rSZ3nR1gpXaLu7QYeSdYmDm3Kvvq"
       },
       {
         id: "MILAURA2388",
         preview: "/images/MILAURA/MILAURA2388.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0RedWvQtbuWaF3Y06zgX9kKwS54u8OLlP7h2dEG",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/6Caq9t7Cp84Kjp4x5bT3t25sFbjPQdY2pSBFMiUeTi1z"
       },
       {
         id: "MILAURA2389",
         preview: "/images/MILAURA/MILAURA2389.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReLagYp0Rq7vUbCXNn8S4feATtO5aZcsE9B6r1",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/8GAHG2KJYwrz8Z5u7jQSWvqJWgBF6uWMYhMoyXNDnh7F"
       },
       {
         id: "MILAURA2415",
         preview: "/images/MILAURA/MILAURA2415.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Rejh3rWn9Mb245fFtdAmxLk8QVPw7RUenWX6oq",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/CJzVpiCf6iHnZNDfjuDjLQ24wCeGcxyReFcECS6vXkAP"
       },
       {
         id: "MILAURA2584",
         preview: "/images/MILAURA/MILAURA2584.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReQy2SBPGfYH32pUiLzNR0hrowyqJKxkjPb4Mu",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/Dbm73o5Y1CZDRDjAQf2uVMTi7bNLcXJAArSGsfbYa4S8"
       },
       {
         id: "MILAURA2619",
         preview: "/images/MILAURA/MILAURA2619.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Re7kOYpIN9JFKEDQYCI8UzrToina6jWR4LqXcx",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/portfolio?wallet=8WaxTBpvAK2ght4F5K5ygFWrKXN6ANCN6Zotu9xr6His"
       },
       {
         id: "MILAURA2641",
         preview: "/images/MILAURA/MILAURA2641.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReJVZ7ZL6XFY7dSMOl2Wgjfce60CmxyqoDINb9",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/HzsofNeZShQhTjFWV7LJj8E5Lz7Ud2X3DLRB1dN2ShC7"
       },
       {
         id: "MILAURA2851",
         preview: "/images/MILAURA/MILAURA2851.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Reily4QCSrK0Rev2wZY5Q71GaFDhI8c4BNgAts",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/7r1dZpMG4RUmUoEcniBBBTPEiZ4qx4WtoBRcGa7Ev86C"
       },
       {
         id: "MILAURA2949",
         preview: "/images/MILAURA/MILAURA2949.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReFzj3AWDclyJUYvsS5ZI6HQBeRwAGiOErzmMD",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/ADvo2vNEV4qJAecdrvwiVxNCvMvN1XVG2sqo85mtoeVB"
       },
       {
         id: "MILAURA3053",
         preview: "/images/MILAURA/MILAURA3053.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReACh6Le5wWrO1veKBIYS7VUnp5XDloQdbF209",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/FonBe3nbXdSjzTTiS3NZErFjsfdMNt8NM9uSVym4Pdeh"
       },
       {
         id: "MILAURA3145",
         preview: "/images/MILAURA/MILAURA3145.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Re3e8j3JZE5uRjt7Thd2XmzCqP0oBZnGifrQ6v",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/EUoHM89XxZPwzZz97d8Nb9TMeLrEpPbpqfcwbg3KWDcK"
       },
       {
         id: "MILAURA3157",
         preview: "/images/MILAURA/MILAURA3157.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0RewEcgCfLHJm0vDtIG68hRWfg9yoMOxbjNuY5Z",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/9MWKd5LC8h7nppe7FhbXWhCJZSiaJPKcWa3Y9ZFYSZ3d"
       },
       {
         id: "MILAURA3171",
         preview: "/images/MILAURA/MILAURA3171.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReY2i7y9XO5lB4EQ8uW0KRDkUdZ2vh1qFtnSg6",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/9sYmdMpFW7RSdDm3Gu9Bsv8f2kdtX5BnVeEHsKsDJmr3"
       },
       {
         id: "MILAURA3173",
         preview: "/images/MILAURA/MILAURA3173.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReLnOFNsRq7vUbCXNn8S4feATtO5aZcsE9B6r1",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/6ugTC5pKnM3RXSXJ6e1buNc1bEYL6qoyGP4w8pCYuajT"
       },
       {
         id: "MILAURA3275",
         preview: "/images/MILAURA/MILAURA3275.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReQCVgUhfYH32pUiLzNR0hrowyqJKxkjPb4Mu8",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/6eCYB5Vk4d6GvXwwqY2jPcJob6F6yUMpsWGPs742eYe"
       },
     ],
     GLORP: [
@@ -1020,42 +1020,49 @@ export const skinsByTab = {
         preview: "/images/GLORP/GLORP201.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReMVOuEfopoibVmGTj7nzxfd5Uh6KuPAvNLltZ",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/Ey5ZNZyCkbrwdyD4EkGSJwdCs9Kt3RkpzXBEEweN8DQr"
       },
       {
         id: "GLORP453",
         preview: "/images/GLORP/GLORP452.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReE04Dw4sTOrKbgslCGSpZhPQ2oA64YyLU5tfw",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/D3qhq7dmSKdcFVrU7cVCU6x7aHe9Tx6F728gkKRyG2KM"
       },
       {
         id: "GLORP485",
         preview: "/images/GLORP/GLORP484.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReLdLUpURq7vUbCXNn8S4feATtO5aZcsE9B6r1",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/EnL6yLk55AZJDCyYBt9FF6EYwHYp9hZAvkBVstKLzxsq"
       },
       {
         id: "GLORP583",
         preview: "/images/GLORP/GLORP582.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0RewhIQGbLHJm0vDtIG68hRWfg9yoMOxbjNuY5Z",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/9zSBGaiMxfxtphtxWB4Hsq3h3c5XwFwusw2q7CFjA2wW"
       },
       {
         id: "GLORP695",
         preview: "/images/GLORP/GLORP694.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Recbv2X9CLW6upV1KAhok2JFiUEYHRQZntXGyD",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/9zSBGaiMxfxtphtxWB4Hsq3h3c5XwFwusw2q7CFjA2wW"
       },
       {
         id: "GLORP867",
         preview: "/images/GLORP/GLORP866.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReDA9PD4imRarG5XP8UE2OZBseHyzuwd7JIYAi",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/3tFf1DNysfMhUeJZX6cdoQhYeJStgV8ktwz9fwTGzdSE"
+      },
+      {
+        id: "GLORP1268",
+        preview: "/images/GLORP/GLORP1268.png",
+        video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Re9D6xhRwNS2daBURM6WlupTQsgw8ILb1i4EYc",
+        audio: "/api/placeholder/audio",
+        link: "https://www.tensor.trade/item/ErHs2MS6883mH8GpcRHHbMtmHRk3gBH84jzqfCx7ycCB"
       },
     ],
     HONORARI: [
@@ -1071,14 +1078,14 @@ export const skinsByTab = {
         preview: "/images/HONORARI/HEARTWOOD.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReiFh6nnSrK0Rev2wZY5Q71GaFDhI8c4BNgAts",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/BoNbHYGnPEZUzbkWM5Dk6Ze2C8tftgmBCmYkDaVcqa6m"
       },
       {
         id: "MINIMALADY",
         preview: "/images/HONORARI/MINIMALADY.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0RewAYP21qLHJm0vDtIG68hRWfg9yoMOxbjNuY5",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/CiYZ4GcKXMsC5Qs7uPqbcUqA2HPS8c54V3VeVrzc2gg3"
       },
       {
         id: "SCOOTER",
@@ -1101,35 +1108,35 @@ export const skinsByTab = {
         preview: "/images/OTHER/BEATERSON.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReOw2LLWZjObq0Bov7V3hYN41tkmGaIxFfuDEU",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.launchmynft.io/collections/HpTP7Vy7TZRTp2yLqsRVsKeXihZTqDKJZzoiTpT82mqs/GkwLxKg3AymufQlyetUx"
       },
       {
         id: "BOOTLEGRAVER00",
         preview: "/images/OTHER/BOOTLEGRAVER00.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReO4e456jObq0Bov7V3hYN41tkmGaIxFfuDEUA",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/ABZNWQbe3VTFLjhkycZJh6AX9dpKPHnTZZzJ3Vtm3rLU"
       },
       {
         id: "BOOTLEGRAVER01",
         preview: "/images/OTHER/BOOTLEGRAVER01.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReM647uopoibVmGTj7nzxfd5Uh6KuPAvNLltZJ",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/bVVThT7Z7xjrK1r8gtQWgf7EyX5bjw6qHPHs4ivHVPV"
       },
       {
         id: "FORESKINFRIEND0",
         preview: "/images/OTHER/FORESKINFRIEND0.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReCnrGFmOLS0KWZFlegrkIY36Nds9HuT8QvBz7",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/AZMsSKRo6NjK6bEwJwMbNiPp1s3odzJu8wzafipJeXq8"
       },
       {
         id: "LUCE756",
         preview: "/images/OTHER/LUCE756.png",
         video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Re8HBMnPhFdHP0LE42QDWBthn3XVsIl9wZToAi",
         audio: "/api/placeholder/audio",
-        link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
+        link: "https://www.tensor.trade/item/9oLyjB7gseBDhe8Ud5iB46XcJVLYK7sEdnPC2biTQ6uu"
       },
       {
         id: "TRUMPTARDIO3865",
