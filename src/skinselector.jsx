@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { skinsByTab } from "./lib/videoData";
+import { Link } from "react-router-dom";
 
 const SkinSelector = () => {
   // Add this at the beginning of your component, after the imports
@@ -78,7 +79,6 @@ const SkinSelector = () => {
   const tabs = ["ALL", "OG", "MILAURA", "GLORP", "HONORARI", "OTHER"];
 
   // Define different skins for each tab - all using videos
- 
 
   // Get current skins based on active tab
   const getCurrentSkins = () => {
@@ -125,7 +125,7 @@ const SkinSelector = () => {
   useEffect(() => {
     const currentSkins = getCurrentSkins();
 
-    currentSkins.forEach(skin => {
+    currentSkins.forEach((skin) => {
       const videoRef = videoRefs.current[skin.id];
       if (videoRef) {
         // Load and show first frame
@@ -253,12 +253,12 @@ const SkinSelector = () => {
   // Modify the grid layout section to include infinite scroll
   return (
     <>
-    {/* Header */}
-    <div className="w-full flex justify-between items-center px-0 pt-6 bg-black z-10">
+      {/* Header */}
+      <div className="w-full flex justify-between items-center px-0 pt-6 bg-black z-10">
         <div className="w-16 md:w-32">
-          <img 
-            src="/images/percentage.gif" 
-            alt="Left Animation" 
+          <img
+            src="/images/percentage.gif"
+            alt="Left Animation"
             className="w-16 h-16 md:w-48 md:h-48 fixed left-0 top-0"
           />
         </div>
@@ -267,179 +267,186 @@ const SkinSelector = () => {
           <p className="text-6xl md:text-8xl font-bold text-[#e50046] font-['Pastor_of_Muppets'] pt-10">
             skins
           </p>
-          <img  
-          src="/images/logo.png" 
-            alt="Right Animation" 
-            className="w-full h-48 -my-12 md:w-48 "/>
+          <Link
+            to="/"
+           
+          >
+            <img
+              src="/images/logo2.png"
+              className="w-full h-80  -my-24  md:w-48 "
+            />
+          </Link>
           <p className="text-6xl md:text-8xl font-bold text-[#e50046] font-['Pastor_of_Muppets'] pt-10">
             socials
           </p>
         </div>
 
         <div className="w-16 md:w-32">
-          <img 
-            src="/images/percentage.gif" 
-            alt="Right Animation" 
+          <img
+            src="/images/percentage.gif"
+            alt="Right Animation"
             className="w-16 h-16 md:w-48 md:h-48 fixed right-0 top-0"
           />
         </div>
       </div>
-    <div className="flex flex-col items-center min-h-screen w-full bg-black text-white overflow-y-auto pb-16 m-0">
-      <audio ref={audioRef} className="hidden" />
+      <div className="flex flex-col items-center min-h-screen w-full bg-black text-white overflow-y-auto pb-16 m-0">
+        <audio ref={audioRef} className="hidden" />
 
-      
+        {/* Tabs layout - 3x2 grid on small screens, original layout on larger screens */}
+        <div
+          className={`${
+            screenSize === "small" ? "sticky" : ""
+          } top-16 bg-black z-10 w-full py-2`}
+        >
+          {screenSize === "small" ? (
+            // Small screens: 3x2 grid (3 tabs per row, 2 rows)
+            <div className="grid grid-cols-3 gap-2 px-2 my-4  max-w-md mx-auto">
+              {tabs.map((tab) => (
+                <button
+                  key={tab}
+                  className={`py-2 px-3 text-xs !rounded-full overflow-hidden ${
+                    activeTab === tab
+                      ? "!bg-[#00ffce] text-black"
+                      : "bg-transparent text-[#00ffce]   border-[#0012ff] border-4"
+                  }`}
+                  onClick={() => setActiveTab(tab)}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
+          ) : (
+            // Medium and large screens: keep the original layout
+            <div className="flex flex-row flex-wrap justify-center gap-2 px-2 my-[50px]">
+              {tabs.map((tab) => (
+                <button
+                  key={tab}
+                  className={`py-2 px-3 text-xs tab-button ${
+                    activeTab === tab
+                      ? "!bg-[#00ffce] text-black"
+                      : "bg-transparent text-[#00ffce]-400 border-[#0012ff] border-4"
+                  }`}
+                  onClick={() => setActiveTab(tab)}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
+          )}
+          <div
+            className={`grid ${
+              screenSize === "small"
+                ? "grid-cols-2"
+                : screenSize === "medium"
+                ? "grid-cols-2"
+                : "grid-cols-2 md:grid-cols-4 lg:grid-cols-4"
+            } gap-5 p-2 mt-[60px] max-w-4xl mx-auto w-full place-items-center`}
+          >
+            {getCurrentSkins()
+              .slice(0, visibleItems)
+              .map((skin) => (
+                <div
+                  key={skin.id}
+                  className="relative flex flex-1 size-full flex-col items-center border-4 border-[#0012ff] rounded-2xl cursor-pointer transition-transform hover:scale-105 w-full max-w-48 h-60"
+                  onClick={() => handleItemInteraction(skin)}
+                  onMouseEnter={() => handleMouseEnter(skin)}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  {/* Preview Image container */}
+                  <div className="w-full h-full relative">
+                    <div className="absolute inset-0 bg-black rounded-xl overflow-hidden">
+                      {!loadedVideos[skin.id] && <div className="shimmer" />}
+                      <video
+                        ref={(el) => (videoRefs.current[skin.id] = el)}
+                        src={skin.video}
+                        className="w-full h-full object-cover"
+                        muted
+                        loop
+                        playsInline
+                        onLoadedData={() =>
+                          setLoadedVideos((prev) => ({
+                            ...prev,
+                            [skin.id]: true,
+                          }))
+                        }
+                      />
+                    </div>
+                  </div>
 
-      {/* Tabs layout - 3x2 grid on small screens, original layout on larger screens */}
-      <div
-        className={`${
-          screenSize === "small" ? "sticky" : ""
-        } top-16 bg-black z-10 w-full py-2`}
-      >
-        {screenSize === "small" ? (
-          // Small screens: 3x2 grid (3 tabs per row, 2 rows)
-          <div className="grid grid-cols-3 gap-2 px-2 my-4  max-w-md mx-auto">
-            {tabs.map((tab) => (
-              <button
-                key={tab}
-                className={`py-2 px-3 text-xs !rounded-full overflow-hidden ${
-                  activeTab === tab
-                    ? "!bg-[#00ffce] text-black"
-                    : "bg-transparent text-cyan-400 border-[#0012ff] border-4"
-                }`}
-                onClick={() => setActiveTab(tab)}
-              >
-                {tab}
-              </button>
-            ))}
+                  {/* Text label with silver gradient */}
+                  <div className="h-[30px] w-full flex items-center justify-center bg-[#0012ff]">
+                    <p className="text-xs md:text-sm truncate animate-gradient bg-gradient-to-r from-[#00ffce] via-white to-[#00ffce] bg-clip-text text-transparent bg-[length:200%_100%]">
+                      {skin.id}
+                    </p>
+                  </div>
+
+                  {clickedItem === skin.id && isMobile && (
+                    <div className="absolute top-0 right-0 bg-pink-600 rounded-full w-3 h-3"></div>
+                  )}
+                </div>
+              ))}
           </div>
-        ) : (
-          // Medium and large screens: keep the original layout
-          <div className="flex flex-row flex-wrap justify-center gap-2 px-2 my-[50px]">
-            {tabs.map((tab) => (
-              <button
-                key={tab}
-                className={`py-2 px-3 text-xs tab-button ${
-                  activeTab === tab
-                    ? "!bg-[#0012ff] text-black"
-                    : "bg-transparent text-cyan-400 border-[#0012ff] border-4"
-                }`}
-                onClick={() => setActiveTab(tab)}
-              >
-                {tab}
-              </button>
-            ))}
+        </div>
+
+        {/* Grid Layout - Adaptive based on screen size */}
+
+        {/* Loading indicator and observer target */}
+        {getCurrentSkins().length > visibleItems && (
+          <div ref={observerTarget} className="w-full flex justify-center py-4">
+            {loading ? (
+              <div className="flex items-center space-x-2">
+                <div className="w-6 h-6 border-2 border-cyan-400 border-t-transparent rounded-full animate-[spin_1s_linear_infinite]"></div>
+                <span className="text-cyan-400">Loading more...</span>
+              </div>
+            ) : (
+              <div className="h-8" /> // Spacer for observer
+            )}
           </div>
         )}
-      </div>
 
-      {/* Grid Layout - Adaptive based on screen size */}
-      <div
-        className={`grid ${
-          screenSize === "small"
-            ? "grid-cols-2"
-            : screenSize === "medium"
-            ? "grid-cols-2"
-            : "grid-cols-2 md:grid-cols-4 lg:grid-cols-4"
-        } gap-5 p-2 mt-[60px] max-w-4xl mx-auto w-full place-items-center`}
-      >
-        {getCurrentSkins().slice(0, visibleItems).map((skin) => (
-          <div
-            key={skin.id}
-            className="relative flex flex-1 size-full flex-col items-center border-4 border-[#0012ff] rounded-2xl cursor-pointer transition-transform hover:scale-105 w-full max-w-48 h-60"
-            onClick={() => handleItemInteraction(skin)}
-            onMouseEnter={() => handleMouseEnter(skin)}
-            onMouseLeave={handleMouseLeave}
-          >
-            {/* Preview Image container */}
-            <div className="w-full h-full relative">
-              <div className="absolute inset-0 bg-black rounded-xl overflow-hidden">
-                {!loadedVideos[skin.id] && <div className="shimmer" />}
+        {/* Safe area at the bottom to ensure all content is accessible */}
+        <div className="h-16"></div>
+
+        {/* Updated Responsive Popup */}
+        {selectedSkin && (
+          <div className="fixed inset-0 bg-black bg-opacity-80 flex flex-col items-center justify-start sm:justify-center z-50 overflow-y-auto min-h-screen p-4">
+            <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md mb-4 mt-16 sm:mt-0">
+              <button
+                onClick={() => setSelectedSkin(null)}
+                className="text-gray-300 !bg-black hover:text-white text-lg sm:text-xl absolute -left-20   -top-8"
+              >
+                ✕
+              </button>
+              <h2 className="text-xl sm:text-2xl text-[#00ffce] font-bold truncate text-center">
+                {selectedSkin.id}
+              </h2>
+            </div>
+
+            <div className="bg-gray-900 border-4 border-[#0012ff] rounded-lg w-full max-w-xs sm:max-w-sm md:max-w-md">
+              <div className="aspect-square w-full">
                 <video
-                  ref={(el) => (videoRefs.current[skin.id] = el)}
-                  src={skin.video}
-                  className="w-full h-full object-cover"
-                  muted
+                  src={selectedSkin.video}
+                  className="w-full h-full object-cover rounded-lg"
+                  controls
+                  autoPlay
                   loop
                   playsInline
-                  onLoadedData={() => setLoadedVideos(prev => ({ ...prev, [skin.id]: true }))}
                 />
               </div>
             </div>
-
-            {/* Text label with silver gradient */}
-            <div className="h-[30px] w-full flex items-center justify-center bg-[#0012ff]">
-              <p className="text-xs md:text-sm truncate animate-gradient bg-gradient-to-r from-[#00ffce] via-white to-[#00ffce] bg-clip-text text-transparent bg-[length:200%_100%]">
-                {skin.id}
-              </p>
-            </div>
-
-            {clickedItem === skin.id && isMobile && (
-              <div className="absolute top-0 right-0 bg-pink-600 rounded-full w-3 h-3"></div>
+            {selectedSkin.link && (
+              <a
+                href={selectedSkin.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block !text-[#e5a700] hover:text-cyan-300 underline mt-4 break-all text-center w-full max-w-xs sm:max-w-sm md:max-w-md px-4"
+              >
+                {selectedSkin.link}
+              </a>
             )}
           </div>
-        ))}
+        )}
       </div>
-
-      {/* Loading indicator and observer target */}
-      {getCurrentSkins().length > visibleItems && (
-        <div
-          ref={observerTarget}
-          className="w-full flex justify-center py-4"
-        >
-          {loading ? (
-            <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 border-2 border-cyan-400 border-t-transparent rounded-full animate-[spin_1s_linear_infinite]"></div>
-              <span className="text-cyan-400">Loading more...</span>
-            </div>
-          ) : (
-            <div className="h-8" /> // Spacer for observer
-          )}
-        </div>
-      )}
-
-      {/* Safe area at the bottom to ensure all content is accessible */}
-      <div className="h-16"></div>
-
-      {/* Updated Responsive Popup */}
-      {selectedSkin && (
-        <div className="fixed inset-0 bg-black bg-opacity-80 flex flex-col items-center justify-start sm:justify-center z-50 overflow-y-auto min-h-screen p-4">
-          <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md mb-4 mt-16 sm:mt-0">
-            <button 
-              onClick={() => setSelectedSkin(null)}
-              className="text-gray-300 !bg-black hover:text-white text-lg sm:text-xl absolute -left-20   -top-8"
-            >
-              ✕
-            </button>
-            <h2 className="text-xl sm:text-2xl text-[#00ffce] font-bold truncate text-center">
-              {selectedSkin.id}
-            </h2>
-          </div>
-          
-          <div className="bg-gray-900 border-4 border-[#0012ff] rounded-lg w-full max-w-xs sm:max-w-sm md:max-w-md">
-            <div className="aspect-square w-full">
-              <video
-                src={selectedSkin.video}
-                className="w-full h-full object-cover rounded-lg"
-                controls
-                autoPlay
-                loop
-                playsInline
-              />
-            </div>
-          </div>
-          {selectedSkin.link && (
-            <a
-              href={selectedSkin.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block !text-[#e5a700] hover:text-cyan-300 underline mt-4 break-all text-center w-full max-w-xs sm:max-w-sm md:max-w-md px-4"
-            >
-              {selectedSkin.link}
-            </a>
-          )}
-        </div>
-      )}
-    </div>
     </>
   );
 };
