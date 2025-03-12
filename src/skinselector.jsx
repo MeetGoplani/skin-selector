@@ -35,6 +35,9 @@ const SkinSelector = () => {
         );
         animation: shimmer 1.5s infinite;
       }
+      .tab-button {
+        border-radius: 9999px !important;
+      }
     `;
     document.head.appendChild(style);
     return () => document.head.removeChild(style);
@@ -261,16 +264,16 @@ const SkinSelector = () => {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6 md:space-x-16">
-          <h1 className="text-2xl md:text-8xl font-bold text-[#e50046] ">
-            SKINS
-          </h1>
+          <p className="text-6xl md:text-8xl font-bold text-[#e50046] font-['Pastor_of_Muppets'] pt-10">
+            skins
+          </p>
           <img  
           src="/images/logo.png" 
             alt="Right Animation" 
             className="w-full h-48 -my-12 md:w-48 "/>
-          <h1 className="text-2xl md:text-6xl font-bold text-[#e50046] font-['Pastor_of_Muppets'] ">
-            SOCIALS
-          </h1>
+          <p className="text-6xl md:text-8xl font-bold text-[#e50046] font-['Pastor_of_Muppets'] pt-10">
+            socials
+          </p>
         </div>
 
         <div className="w-16 md:w-32">
@@ -298,10 +301,10 @@ const SkinSelector = () => {
             {tabs.map((tab) => (
               <button
                 key={tab}
-                className={`py-2 px-3 text-xs rounded-md ${
+                className={`py-2 px-3 text-xs !rounded-full overflow-hidden ${
                   activeTab === tab
                     ? "!bg-[#00ffce] text-black"
-                    : "bg-transparent text-cyan-400  border-[#0012ff] border-4"
+                    : "bg-transparent text-cyan-400 border-[#0012ff] border-4"
                 }`}
                 onClick={() => setActiveTab(tab)}
               >
@@ -315,10 +318,10 @@ const SkinSelector = () => {
             {tabs.map((tab) => (
               <button
                 key={tab}
-                className={`py-2 px-3 text-xs md:text-sm rounded-md ${
+                className={`py-2 px-3 text-xs tab-button ${
                   activeTab === tab
-                    ? "!bg-[#00ffce] text-black"
-                    : "bg-transparent text-cyan-400  border-[#0012ff] border-4"
+                    ? "!bg-[#0012ff] text-black"
+                    : "bg-transparent text-cyan-400 border-[#0012ff] border-4"
                 }`}
                 onClick={() => setActiveTab(tab)}
               >
@@ -365,7 +368,7 @@ const SkinSelector = () => {
 
             {/* Text label with silver gradient */}
             <div className="h-[30px] w-full flex items-center justify-center bg-[#0012ff]">
-              <p className="text-xs md:text-sm truncate animate-gradient bg-gradient-to-r from-cyan-600 via-cyan-100 to-cyan-600 bg-clip-text text-transparent bg-[length:200%_100%]">
+              <p className="text-xs md:text-sm truncate animate-gradient bg-gradient-to-r from-[#00ffce] via-white to-[#00ffce] bg-clip-text text-transparent bg-[length:200%_100%]">
                 {skin.id}
               </p>
             </div>
