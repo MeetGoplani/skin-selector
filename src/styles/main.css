@@ -25,6 +25,12 @@ html, body {
 	margin: 0;
 	overflow: hidden
 }
+@font-face {
+  font-family: 'Pastor_of_Muppets';
+  src: url('/fonts/PastorOfMuppets.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 
 
