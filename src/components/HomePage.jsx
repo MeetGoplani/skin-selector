@@ -1,13 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import  Frame  from './builder';
+import React from "react";
+import { Link } from "react-router-dom"; // Add this import
 
-const HomePage = () => {
+const ClickableImage = () => {
   return (
-    <div className="bg-black text-green-400 w-full min-h-screen p-4 font-mono relative">
-      {/* Top Bar */}
+    <>
       <div className="w-full flex justify-between items-center px-0 pt-6 bg-black z-10">
-        {/* Left Animation */}
         <div className="w-16 md:w-32">
           <img
             src="/images/percentage.gif"
@@ -16,28 +13,22 @@ const HomePage = () => {
           />
         </div>
 
-        {/* Center Content */}
         <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6 md:space-x-16">
           <Link to="/skins">
             <p className="text-6xl md:text-8xl font-bold text-[#e50046] font-['Pastor_of_Muppets'] pt-10">
               skins
             </p>
           </Link>
-
           <img
             src="/images/logo2.png"
-            alt="Mirari Logo"
-            className="w-full h-80 -my-24 md:w-48"
+            className="w-full h-80  -my-24  md:w-48 "
           />
 
-          <Link to="/socials">
-            <p className="text-6xl md:text-8xl font-bold text-[#e50046] font-['Pastor_of_Muppets'] pt-10">
-              socials
-            </p>
-          </Link>
+          <p className="text-6xl md:text-8xl font-bold text-[#e50046] font-['Pastor_of_Muppets'] pt-10">
+            socials
+          </p>
         </div>
 
-        {/* Right Animation */}
         <div className="w-16 md:w-32">
           <img
             src="/images/percentage.gif"
@@ -46,11 +37,45 @@ const HomePage = () => {
           />
         </div>
       </div>
+      <div style={{ position: "relative", width: "800px", margin: "auto" }}>
+        {/* Background Image */}
+        <img
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/af25057bef9689a737b5867b027ff4d96284e2dad14fb187be42d160c88b7ea7?placeholderIfAbsent=true&apiKey=d5a57126427d4ef7bef61b7201f8af28"
+          alt="Interactive Image"
+          style={{ width: "100%", height: "auto", display: "block" }}
+        />
 
-    {/* <SplashImage /> */}
-    <Frame />
-    </div>
+        {/* Clickable Areas */}
+        <a
+          href="https://skin-selector.vercel.app/skins"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            position: "absolute",
+            top: "52%", // Adjust this value based on the position
+            width: "100px",
+            height: "50px",
+            backgroundColor: "rgba(255, 0, 0, 0.3)",
+            left: 0, // Transparent red overlay for visualization
+          }}
+        />
+
+        <a
+          href=" https://linktr.ee/miraricielador"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "84%",
+            width: "100px",
+            height: "50px",
+            backgroundColor: "rgba(0, 255, 0, 0.3)", // Transparent green overlay
+          }}
+        />
+      </div>
+    </>
   );
 };
 
-export default HomePage;
+export default ClickableImage;
