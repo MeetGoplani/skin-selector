@@ -4,12 +4,13 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import SkinSelector from './skinselector'
-import MirariPromo from './home-page'
+import HomePage from './components/HomePage'
+
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<MirariPromo />} />
+      <Route path="/" element={<HomePage />} />
       <Route path="/skins" element={<SkinSelector />} />
     </Routes>
   )
