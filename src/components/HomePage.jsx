@@ -1,7 +1,27 @@
-import React from "react";
-import { Link } from "react-router-dom"; // Add this import
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const ClickableImage = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
+
+  const togglePlay = () => {
+    const video = document.getElementById('mainVideo');
+    if (isPlaying) {
+      video.pause();
+    } else {
+      video.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  const toggleMute = () => {
+    const video = document.getElementById('mainVideo');
+    video.muted = !isMuted;
+    setIsMuted(!isMuted);
+  };
+
   return (
     <>
       <div className="w-full flex justify-between items-center px-0 pt-6 bg-black z-10">
@@ -37,6 +57,27 @@ const ClickableImage = () => {
           />
         </div>
       </div>
+
+      <div className="w-full flex justify-center my-8 relative">
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-[#e50046]"></div>
+          </div>
+        )}
+        <video 
+          id="mainVideo"
+          autoPlay
+          muted
+          loop 
+          controls
+          playsInline
+          className="w-full max-w-4xl"
+          onLoadedData={() => setIsLoading(false)}
+        >
+          <source src="https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Resbzi1dewyBu1vd4nWrQOiVeGSXY8gRbcTJLx" type="video/mp4" />
+        </video>
+      </div>
+
       <div style={{ position: "relative", width: "800px", margin: "auto" }}>
         {/* Background Image */}
         <img
@@ -55,7 +96,7 @@ const ClickableImage = () => {
             top: "52%", // Adjust this value based on the position
             width: "100px",
             height: "50px",
-            backgroundColor: "rgba(255, 0, 0, 0.3)",
+            // backgroundColor: "rgba(255, 0, 0, 0.3)",
             left: 0, // Transparent red overlay for visualization
           }}
         />
@@ -70,7 +111,7 @@ const ClickableImage = () => {
             left: "84%",
             width: "100px",
             height: "50px",
-            backgroundColor: "rgba(0, 255, 0, 0.3)", // Transparent green overlay
+            // backgroundColor: "rgba(0, 255, 0, 0.3)", // Transparent green overlay
           }}
         />
       </div>
