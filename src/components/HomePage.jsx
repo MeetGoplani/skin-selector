@@ -47,7 +47,7 @@ const ClickableImage = () => {
 
         {/* Clickable Areas */}
         <a
-          href="https://skin-selector.vercel.app/skins"
+          href="/skins"
           target="_blank"
           rel="noopener noreferrer"
           style={{
