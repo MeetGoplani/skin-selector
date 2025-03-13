@@ -58,7 +58,7 @@ const ClickableImage = () => {
         </div>
       </div>
 
-      <div className="w-full flex justify-center my-8 relative">
+      <div className="w-full flex justify-center my-8 relative px-4 sm:px-6 md:px-8">
         {isLoading && (
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-[#e50046]"></div>
@@ -71,7 +71,7 @@ const ClickableImage = () => {
           loop 
           controls
           playsInline
-          className="w-full max-w-4xl"
+          className="w-full max-w-4xl h-auto object-contain"
           onLoadedData={() => setIsLoading(false)}
         >
           <source src="https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Resbzi1dewyBu1vd4nWrQOiVeGSXY8gRbcTJLx" type="video/mp4" />
