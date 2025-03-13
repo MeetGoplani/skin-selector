@@ -78,42 +78,40 @@ const ClickableImage = () => {
         </video>
       </div>
 
-      <div style={{ position: "relative", width: "800px", margin: "auto" }}>
-        {/* Background Image */}
-        <img
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/af25057bef9689a737b5867b027ff4d96284e2dad14fb187be42d160c88b7ea7?placeholderIfAbsent=true&apiKey=d5a57126427d4ef7bef61b7201f8af28"
-          alt="Interactive Image"
-          style={{ width: "100%", height: "auto", display: "block" }}
-        />
+      <div className="w-full px-4 sm:px-6 md:px-8">
+        <div className="relative w-full max-w-4xl mx-auto">
+          <img
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/af25057bef9689a737b5867b027ff4d96284e2dad14fb187be42d160c88b7ea7?placeholderIfAbsent=true&apiKey=d5a57126427d4ef7bef61b7201f8af28"
+            alt="Interactive Image"
+            className="w-full h-auto"
+          />
 
-        {/* Clickable Areas */}
-        <a
-          href="/skins"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            position: "absolute",
-            top: "52%", // Adjust this value based on the position
-            width: "100px",
-            height: "50px",
-            // backgroundColor: "rgba(255, 0, 0, 0.3)",
-            left: 0, // Transparent red overlay for visualization
-          }}
-        />
+          <a
+            href="/skins"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute"
+            style={{
+              top: "52%",
+              width: "100px",
+              height: "50px",
+              left: 0,
+            }}
+          />
 
-        <a
-          href=" https://linktr.ee/miraricielador"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "84%",
-            width: "100px",
-            height: "50px",
-            // backgroundColor: "rgba(0, 255, 0, 0.3)", // Transparent green overlay
-          }}
-        />
+          <a
+            href="https://linktr.ee/miraricielador"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute"
+            style={{
+              top: "50%",
+              left: "84%",
+              width: "100px",
+              height: "50px",
+            }}
+          />
+        </div>
       </div>
     </>
   );
