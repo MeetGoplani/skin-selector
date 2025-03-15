@@ -300,14 +300,14 @@ const SkinSelector = () => {
         >
           {screenSize === "small" ? (
             // Small screens: 3x2 grid (3 tabs per row, 2 rows)
-            <div className="grid grid-cols-3 gap-2 px-2 my-4  max-w-md mx-auto">
+            <div className="grid grid-cols-3 gap-2 px-2 my-4 max-w-md mx-auto">
               {tabs.map((tab) => (
                 <button
                   key={tab}
-                  className={`py-2 px-3 text-xs !rounded-full overflow-hidden ${
+                  className={`py-2 px-3 text-xs !rounded-full overflow-hidden font-bold ${
                     activeTab === tab
-                      ? "!bg-[#00ffce] text-black"
-                      : "bg-transparent text-[#00ffce]   border-[#0012ff] border-4"
+                      ? "!bg-[#0012ff] text-black border-[#0012ff]"
+                      : "bg-transparent text-[#00ffce] !border-[#0012ff] !border-4 hover:border-opacity-100"
                   }`}
                   onClick={() => setActiveTab(tab)}
                 >
@@ -321,10 +321,10 @@ const SkinSelector = () => {
               {tabs.map((tab) => (
                 <button
                   key={tab}
-                  className={`py-2 px-3 text-xs tab-button ${
+                  className={`py-2 px-3 text-xs tab-button font-bold ${
                     activeTab === tab
-                      ? "!bg-[#00ffce] text-black"
-                      : "bg-transparent text-[#00ffce]-400 border-[#0012ff] border-4"
+                      ? "!bg-[#0012ff] text-black border-[#0012ff]"
+                      : "bg-transparent text-[#00ffce] !border-[#0012ff] !border-4"
                   }`}
                   onClick={() => setActiveTab(tab)}
                 >
@@ -410,7 +410,7 @@ const SkinSelector = () => {
         {/* Updated Responsive Popup */}
         {selectedSkin && (
           <div className="fixed inset-0 bg-black bg-opacity-80 flex flex-col items-center justify-start sm:justify-center z-50 overflow-y-auto min-h-screen p-4">
-            <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md mb-4 mt-16 sm:mt-0">
+            <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md">
               <button
                 onClick={() => setSelectedSkin(null)}
                 className="text-gray-300 !bg-black hover:text-white text-lg sm:text-xl absolute -left-20   -top-8"
