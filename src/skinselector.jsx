@@ -265,19 +265,19 @@ const SkinSelector = () => {
 
         <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6 md:space-x-16">
           <Link to="/skins" className="no-underline">
-            <p className="text-4xl sm:text-6xl md:text-8xl font-bold text-[#e50046] font-['Pastor_of_Muppets'] pt-4 sm:pt-10">
+            <p className="text-4xl sm:text-6xl md:text-7xl font-bold text-[#e50046] font-['Pastor_of_Muppets'] pt-4 sm:pt-10">
               skins
             </p>
           </Link>
-          <Link to="/" className="no-underline cursor-pointer hover:scale-105 transition-transform">
+          <Link to="/" >
             <img
               src="/images/logo2.png"
-              className="w-32 h-32 sm:w-full sm:h-80 sm:-my-24 md:w-48"
+              className="w-32 h-32 sm:w-full sm:h-80 sm:-my-24 md:w-72   md:h-80"
               alt="Logo"
             />
           </Link>
           <Link to="/socials" className="no-underline">
-            <p className="text-4xl sm:text-6xl md:text-8xl font-bold text-[#e50046] font-['Pastor_of_Muppets'] pt-4 sm:pt-10">
+            <p className="text-4xl sm:text-6xl md:text-7xl font-bold text-[#e50046] font-['Pastor_of_Muppets'] pt-4 sm:pt-10">
               socials
             </p>
           </Link>
