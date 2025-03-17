@@ -34,19 +34,23 @@ const ClickableImage = () => {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6 md:space-x-16">
-          <Link to="/skins">
-            <p className="text-6xl md:text-8xl font-bold text-[#e50046] font-['Pastor_of_Muppets'] pt-10">
+          <Link to="/skins" className="no-underline">
+            <p className="text-4xl sm:text-6xl md:text-8xl font-bold text-[#e50046] font-['Pastor_of_Muppets'] pt-4 sm:pt-10">
               skins
             </p>
           </Link>
-          <img
-            src="/images/logo2.png"
-            className="w-full h-80  -my-24  md:w-48 "
-          />
-
-          <p className="text-6xl md:text-8xl font-bold text-[#e50046] font-['Pastor_of_Muppets'] pt-10">
-            socials
-          </p>
+          <Link to="/" className="no-underline cursor-pointer hover:scale-105 transition-transform">
+            <img
+              src="/images/logo2.png"
+              className="w-32 h-32 sm:w-full sm:h-80 sm:-my-24 md:w-48"
+              alt="Logo"
+            />
+          </Link>
+          <Link to="/socials" className="no-underline">
+            <p className="text-4xl sm:text-6xl md:text-8xl font-bold text-[#e50046] font-['Pastor_of_Muppets'] pt-4 sm:pt-10">
+              socials
+            </p>
+          </Link>
         </div>
 
         <div className="w-16 md:w-32">
@@ -67,14 +71,19 @@ const ClickableImage = () => {
         <video 
           id="mainVideo"
           autoPlay
-          muted
+          
           loop 
           controls
           playsInline
-          className="w-full max-w-4xl h-auto object-contain"
+          className="w-full max-w-4xl h-auto object-contain bg-black"
           onLoadedData={() => setIsLoading(false)}
+          onError={(e) => console.error("Video Error:", e)}
+          poster="/images/video-thumbnail.jpg"
         >
-          <source src="https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Resbzi1dewyBu1vd4nWrQOiVeGSXY8gRbcTJLx" type="video/mp4" />
+          <source 
+            src="https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Resbzi1dewyBu1vd4nWrQOiVeGSXY8gRbcTJLx" 
+            type="video/mp4" 
+          />
         </video>
       </div>
 
