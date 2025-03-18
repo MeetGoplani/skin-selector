@@ -90,7 +90,7 @@ const ClickableImage = () => {
       <div className="w-full px-4 sm:px-6 md:px-8">
         <div className="relative w-full max-w-4xl mx-auto">
           <img
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/af25057bef9689a737b5867b027ff4d96284e2dad14fb187be42d160c88b7ea7?placeholderIfAbsent=true&apiKey=d5a57126427d4ef7bef61b7201f8af28"
+            src="https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Re5Z5AWKYUXMuE3ThVrFqIzoy97pCajcbiGWe6"
             alt="Interactive Image"
             className="w-full h-auto"
           />
@@ -105,6 +105,7 @@ const ClickableImage = () => {
               width: "100px",
               height: "50px",
               left: 0,
+              // backgroundColor: "rgba(0, 255, 0, 0.3)", // Transparent green overlay
             }}
           />
 
@@ -114,10 +115,11 @@ const ClickableImage = () => {
             rel="noopener noreferrer"
             className="absolute"
             style={{
-              top: "50%",
+              top: "49%",
               left: "84%",
               width: "100px",
               height: "50px",
+              // backgroundColor: "rgba(0, 255, 0, 0.3)", // Transparent green overlay
             }}
           />
         </div>

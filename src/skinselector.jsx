@@ -309,7 +309,7 @@ const SkinSelector = () => {
                   className={`py-2 px-3 text-xs !rounded-full overflow-hidden font-bold ${
                     activeTab === tab
                       ? "!bg-[#0012ff] text-black border-[#0012ff]"
-                      : "bg-transparent text-[#00ffce] !border-[#0012ff] !border-4 hover:border-opacity-100"
+                      : "!bg-black text-[#00ffce] !border-[#0012ff] !border-4 hover:border-opacity-100"
                   }`}
                   onClick={() => setActiveTab(tab)}
                 >
@@ -326,7 +326,7 @@ const SkinSelector = () => {
                   className={`py-2 px-3 text-xs tab-button font-bold ${
                     activeTab === tab
                       ? "!bg-[#0012ff] text-black border-[#0012ff]"
-                      : "bg-transparent text-[#00ffce] !border-[#0012ff] !border-4"
+                      : "!bg-black text-[#00ffce] !border-[#0012ff] !border-4"
                   }`}
                   onClick={() => setActiveTab(tab)}
                 >
@@ -376,8 +376,9 @@ const SkinSelector = () => {
                   </div>
 
                   {/* Text label with silver gradient */}
-                  <div className="h-[30px] w-full flex items-center justify-center bg-[#0012ff]">
-                    <p className="text-xs md:text-sm truncate animate-gradient bg-gradient-to-r from-[#00ffce] via-white to-[#00ffce] bg-clip-text text-transparent bg-[length:200%_100%]">
+                  <div className="h-[30px] w-full flex items-center justify-center bg-[#0012ff50] relative overflow-hidden">
+                    <div className="absolute inset-0 animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-[#ffffff20] to-transparent"></div>
+                    <p className="text-xs md:text-sm text-[#00ffce] z-10">
                       {skin.id}
                     </p>
                   </div>
