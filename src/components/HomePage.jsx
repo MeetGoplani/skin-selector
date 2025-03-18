@@ -46,11 +46,16 @@ const ClickableImage = () => {
               alt="Logo"
             />
           </Link>
-          <Link to="/socials" className="no-underline">
-            <p className="text-4xl sm:text-6xl md:text-7xl font-bold text-[#e50046] font-['Pastor_of_Muppets'] pt-4 sm:pt-10">
-              socials
-            </p>
-          </Link>
+          <a 
+                href="https://linktr.ee/miraricielador" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="no-underline"
+              >
+                <p className="text-4xl sm:text-6xl md:text-7xl font-bold text-[#e50046] font-['Pastor_of_Muppets'] pt-4 sm:pt-10">
+                  socials
+                </p>
+              </a>
         </div>
 
         <div className="w-16 md:w-32">
