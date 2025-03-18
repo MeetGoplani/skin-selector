@@ -276,7 +276,7 @@ const SkinSelector = () => {
               alt="Logo"
             />
           </Link>
-          <Link to="/socials" className="no-underline">
+          <Link to="https://linktr.ee/miraricielador" className="no-underline">
             <p className="text-4xl sm:text-6xl md:text-7xl font-bold text-[#e50046] font-['Pastor_of_Muppets'] pt-4 sm:pt-10">
               socials
             </p>
