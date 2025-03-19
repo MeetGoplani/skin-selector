@@ -381,9 +381,9 @@ const SkinSelector = () => {
                   </div>
 
                   {/* Text label with silver gradient */}
-                  <div className="h-[30px] w-full flex items-center justify-center bg-[#0012ff50] relative overflow-hidden pt-2 pb-2">
+                  <div className="h-[30px] w-full flex items-center justify-center bg-[#0012ff50] relative overflow-hidden pt-2 pb-2 ">
                     <div className="absolute inset-0 animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-[#ffffff20] to-transparent"></div>
-                    <p className="text-xs md:text-sm text-[#00ffce] z-10">
+                    <p className="text-xs md:text-sm text-[#00ffce] z-10 !font-bold">
                       {skin.id}
                     </p>
                   </div>
