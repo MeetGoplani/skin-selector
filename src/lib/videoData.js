@@ -1106,42 +1106,42 @@ export const skinsByTab = {
       {
         id: "BEATERSON",
         preview: "/images/OTHER/BEATERSON.png",
-        video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReOw2LLWZjObq0Bov7V3hYN41tkmGaIxFfuDEU",
+        video: "/videos/other/BEATERSON.mp4",
         audio: "/api/placeholder/audio",
         link: "https://www.launchmynft.io/collections/HpTP7Vy7TZRTp2yLqsRVsKeXihZTqDKJZzoiTpT82mqs/GkwLxKg3AymufQlyetUx"
       },
       {
         id: "BOOTLEGRAVER00",
         preview: "/images/OTHER/BOOTLEGRAVER00.png",
-        video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReO4e456jObq0Bov7V3hYN41tkmGaIxFfuDEUA",
+        video: "/videos/other/BOOTLEGRAVER00.mp4",
         audio: "/api/placeholder/audio",
         link: "https://www.tensor.trade/item/ABZNWQbe3VTFLjhkycZJh6AX9dpKPHnTZZzJ3Vtm3rLU"
       },
       {
         id: "BOOTLEGRAVER01",
         preview: "/images/OTHER/BOOTLEGRAVER01.png",
-        video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReM647uopoibVmGTj7nzxfd5Uh6KuPAvNLltZJ",
+        video: "/videos/other/BOOTLEGRAVER01.mp4",
         audio: "/api/placeholder/audio",
         link: "https://www.tensor.trade/item/bVVThT7Z7xjrK1r8gtQWgf7EyX5bjw6qHPHs4ivHVPV"
       },
       {
         id: "FORESKINFRIEND0",
         preview: "/images/OTHER/FORESKINFRIEND0.png",
-        video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReCnrGFmOLS0KWZFlegrkIY36Nds9HuT8QvBz7",
+        video: "/videos/other/FORESKINFRIEND0.mp4",
         audio: "/api/placeholder/audio",
         link: "https://www.tensor.trade/item/AZMsSKRo6NjK6bEwJwMbNiPp1s3odzJu8wzafipJeXq8"
       },
       {
         id: "LUCE756",
         preview: "/images/OTHER/LUCE756.png",
-        video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Re8HBMnPhFdHP0LE42QDWBthn3XVsIl9wZToAi",
+        video: "/videos/other/LUCE756.mp4",
         audio: "/api/placeholder/audio",
         link: "https://www.tensor.trade/item/9oLyjB7gseBDhe8Ud5iB46XcJVLYK7sEdnPC2biTQ6uu"
       },
       {
         id: "TRUMPTARDIO3865",
         preview: "/images/OTHER/TRUMPTARDIO3865.png",
-        video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReazTpVGxAldLOmrRzE7CbNDSP0vwHexsMh68T",
+        video: "/videos/other/TRUMPTARDIO3865.mp4",
         audio: "/api/placeholder/audio",
         link: "https://www.tensor.trade/item/2VxLSu5r9HYegRfvaWz7mwFpy6RztcKhoXEs19YRrFqN"
       },
