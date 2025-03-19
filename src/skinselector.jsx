@@ -361,7 +361,7 @@ const SkinSelector = () => {
                 >
                   {/* Preview Image container */}
                   <div className="w-full h-full relative">
-                    <div className="absolute inset-0 bg-black rounded-xl overflow-hidden">
+                    <div className="absolute inset-0 bg-black rounded-t-xl overflow-hidden">
                       {!loadedVideos[skin.id] && <div className="shimmer" />}
                       <video
                         ref={(el) => (videoRefs.current[skin.id] = el)}
