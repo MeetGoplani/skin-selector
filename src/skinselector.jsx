@@ -313,7 +313,7 @@ const SkinSelector = () => {
                   key={tab}
                   className={`py-2 px-3 text-xs !rounded-full overflow-hidden font-bold ${
                     activeTab === tab
-                      ? "!bg-[#0012ff] text-black border-[#0012ff]"
+                      ? "!bg-[#0012ff] text-[#00ffce] border-[#0012ff]"
                       : "!bg-black text-[#00ffce] !border-[#0012ff] !border-4 hover:border-opacity-100"
                   }`}
                   onClick={() => setActiveTab(tab)}
@@ -330,7 +330,7 @@ const SkinSelector = () => {
                   key={tab}
                   className={`py-2 px-3 text-xs tab-button font-bold ${
                     activeTab === tab
-                      ? "!bg-[#0012ff] text-black border-[#0012ff]"
+                      ? "!bg-[#0012ff] text-[#00ffce] border-[#0012ff]"
                       : "!bg-black text-[#00ffce] !border-[#0012ff] !border-4"
                   }`}
                   onClick={() => setActiveTab(tab)}
@@ -381,7 +381,7 @@ const SkinSelector = () => {
                   </div>
 
                   {/* Text label with silver gradient */}
-                  <div className="h-[30px] w-full flex items-center justify-center bg-[#0012ff50] relative overflow-hidden">
+                  <div className="h-[30px] w-full flex items-center justify-center bg-[#0012ff50] relative overflow-hidden pt-2 pb-2">
                     <div className="absolute inset-0 animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-[#ffffff20] to-transparent"></div>
                     <p className="text-xs md:text-sm text-[#00ffce] z-10">
                       {skin.id}
@@ -417,15 +417,15 @@ const SkinSelector = () => {
 
         {/* Updated Responsive Popup */}
         {selectedSkin && (
-          <div className="fixed inset-0 bg-black bg-opacity-80 flex flex-col items-center justify-start sm:justify-center z-50 overflow-y-auto min-h-screen p-4">
+          <div className="fixed inset-0 bg-black bg-opacity-80 flex flex-col items-center justify-start sm:justify-center z-50 overflow-y-auto min-h-screen p-4 pt-10">
             <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md">
               <button
                 onClick={() => setSelectedSkin(null)}
-                className="text-gray-300 !bg-black hover:text-white text-lg sm:text-xl absolute -left-20   -top-8"
+                className="text-gray-300 !bg-black hover:text-white text-lg sm:text-xl absolute -left-8 -top-8 sm:-left-20"
               >
                 ✕
               </button>
-              <h2 className="text-xl sm:text-2xl text-[#00ffce] font-bold truncate text-center">
+              <h2 className="text-xl sm:text-2xl text-[#00ffce] font-bold truncate text-center mb-4">
                 {selectedSkin.id}
               </h2>
             </div>
