@@ -116,7 +116,7 @@ const ClickableImage = () => {
           poster="/images/video-thumbnail.jpg"
         >
           <source 
-            src="/public/videos/teaser.mp4" 
+            src="/videos/teaser.mp4" 
             type="video/mp4" 
           />
         </video>
