@@ -127,26 +127,27 @@ const SkinSelector = () => {
 
     currentSkins.forEach((skin) => {
       const videoRef = videoRefs.current[skin.id];
-      if (videoRef) {
-        // Load and show first frame
-        videoRef.load();
-        videoRef.currentTime = 0;
-        videoRef.pause();
+      if (!videoRef) return;
 
-        if (!isMobile && hoveredItem === skin.id) {
-          // On desktop, play video when hovered
-          videoRef.play().catch((e) => {
-            if (e.name !== "AbortError") {
-              console.error("Video playback failed:", e);
-            }
-          });
-        } else if (isMobile && clickedItem === skin.id) {
-          // On mobile, play video when clicked once
-          videoRef.play().catch((e) => {
-            if (e.name !== "AbortError") {
-              console.error("Video playback failed:", e);
-            }
-          });
+      if (!isMobile && hoveredItem === skin.id) {
+        // Play video when hovered
+        videoRef.play().catch((e) => {
+          if (e.name !== "AbortError") {
+            console.error("Video playback failed:", e);
+          }
+        });
+      } else if (isMobile && clickedItem === skin.id) {
+        // Play video when clicked
+        videoRef.play().catch((e) => {
+          if (e.name !== "AbortError") {
+            console.error("Video playback failed:", e);
+          }
+        });
+      } else {
+        // Only pause and reset if this video was previously playing
+        if (!videoRef.paused) {
+          videoRef.pause();
+          videoRef.currentTime = 0;
         }
       }
     });
