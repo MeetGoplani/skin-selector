@@ -5,14 +5,16 @@ import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import SkinSelector from './skinselector'
 import HomePage from './components/HomePage'
-
+import { AudioProvider } from './context/AudioContext'
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/skins" element={<SkinSelector />} />
-    </Routes>
+    <AudioProvider>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/skins" element={<SkinSelector />} />
+      </Routes>
+    </AudioProvider>
   )
 }
 

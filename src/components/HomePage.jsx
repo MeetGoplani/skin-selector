@@ -106,7 +106,7 @@ const ClickableImage = () => {
         <video 
           id="mainVideo"
           autoPlay
-          
+          muted
           loop 
           controls
           playsInline
@@ -116,7 +116,7 @@ const ClickableImage = () => {
           poster="/images/video-thumbnail.jpg"
         >
           <source 
-            src="https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Resbzi1dewyBu1vd4nWrQOiVeGSXY8gRbcTJLx" 
+            src="/public/videos/teaser.mp4" 
             type="video/mp4" 
           />
         </video>
