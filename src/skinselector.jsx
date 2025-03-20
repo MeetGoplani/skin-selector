@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { skinsByTab } from "./lib/videoData";
 import { Link } from "react-router-dom";
+import { Suspense, lazy } from 'react';
+
+// Lazy load the video component
+const LazyVideo = lazy(() => import('./components/LazyVideo'));
 
 const SkinSelector = () => {
   // Add this at the beginning of your component, after the imports
@@ -360,24 +364,25 @@ const SkinSelector = () => {
                   onMouseEnter={() => handleMouseEnter(skin)}
                   onMouseLeave={handleMouseLeave}
                 >
-                  {/* Preview Image container */}
                   <div className="w-full h-full relative">
                     <div className="absolute inset-0 bg-black rounded-t-xl overflow-hidden">
                       {!loadedVideos[skin.id] && <div className="shimmer" />}
-                      <video
-                        ref={(el) => (videoRefs.current[skin.id] = el)}
-                        src={skin.video}
-                        className="w-full h-full object-cover"
-                        muted
-                        loop
-                        playsInline
-                        onLoadedData={() =>
-                          setLoadedVideos((prev) => ({
-                            ...prev,
-                            [skin.id]: true,
-                          }))
-                        }
-                      />
+                      <Suspense fallback={<div className="shimmer" />}>
+                        <LazyVideo
+                          ref={(el) => (videoRefs.current[skin.id] = el)}
+                          src={skin.video}
+                          className="w-full h-full object-cover"
+                          muted
+                          loop
+                          playsInline
+                          onLoadedData={() =>
+                            setLoadedVideos((prev) => ({
+                              ...prev,
+                              [skin.id]: true,
+                            }))
+                          }
+                        />
+                      </Suspense>
                     </div>
                   </div>
 
