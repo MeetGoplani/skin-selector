@@ -1,10 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const ClickableImage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
+
+  useEffect(() => {
+    const video = document.getElementById('mainVideo');
+    
+    const handleScroll = () => {
+      if (!video) return;
+      
+      const rect = video.getBoundingClientRect();
+      const isInView = (
+        rect.top >= 0 &&
+        rect.top <= window.innerHeight &&
+        rect.bottom >= 0 &&
+        rect.bottom <= window.innerHeight
+      );
+
+      if (isInView) {
+        video.play().catch(err => console.log("Playback prevented:", err));
+        setIsPlaying(true);
+      } else {
+        video.pause();
+        setIsPlaying(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    // Initial check
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const togglePlay = () => {
     const video = document.getElementById('mainVideo');
@@ -95,7 +125,7 @@ const ClickableImage = () => {
       <div className="w-full px-4 sm:px-6 md:px-8">
         <div className="relative w-full max-w-4xl mx-auto">
           <img
-            src="https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Re5Z5AWKYUXMuE3ThVrFqIzoy97pCajcbiGWe6"
+            src="/public/splash.jpeg"
             alt="Interactive Image"
             className="w-full h-auto"
           />

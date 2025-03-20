@@ -264,29 +264,29 @@ const SkinSelector = () => {
           />
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6 md:space-x-16">
+        <div className="flex flex-col sm:flex-row items-center -space-y-5 sm:-space-y-5 sm:space-x-2 md:space-x-8">
           <Link to="/skins" className="no-underline">
-            <p className="text-4xl sm:text-6xl md:text-7xl font-bold text-[#e50046] font-['Pastor_of_Muppets'] pt-4 sm:pt-10">
+            <p className="text-4xl sm:text-6xl md:text-7xl font-bold text-[#e50046] font-['Pastor_of_Muppets'] pt-0 sm:pt-10">
               skins
             </p>
           </Link>
           <Link to="/" >
             <img
               src="/images/logo2.png"
-              className="w-32 h-32 sm:w-full sm:h-80 sm:-my-24 md:w-72   md:h-80"
+              className="w-32 h-32 sm:w-full sm:h-80 sm:-my-24 md:w-72 md:h-80"
               alt="Logo"
             />
           </Link>
           <a 
-                href="https://linktr.ee/miraricielador" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="no-underline"
-              >
-                <p className="text-4xl sm:text-6xl md:text-7xl font-bold text-[#e50046] font-['Pastor_of_Muppets'] pt-4 sm:pt-10">
-                  socials
-                </p>
-              </a>
+            href="https://linktr.ee/miraricielador" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="no-underline"
+          >
+            <p className="text-4xl sm:text-6xl md:text-7xl font-bold text-[#e50046] font-['Pastor_of_Muppets'] pt-0 sm:pt-10">
+              socials
+            </p>
+          </a>
         </div>
 
         <div className="w-16 md:w-32">
