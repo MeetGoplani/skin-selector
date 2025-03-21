@@ -23,10 +23,8 @@ const ClickableImage = () => {
       if (isInView) {
         video.play().catch(err => console.log("Playback prevented:", err));
         setIsPlaying(true);
-      } else {
-        video.pause();
-        setIsPlaying(false);
       }
+      // Removed the else block that was pausing the video
     };
 
     window.addEventListener('scroll', handleScroll);
