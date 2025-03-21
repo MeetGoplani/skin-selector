@@ -6,45 +6,7 @@ import { Suspense, lazy } from 'react';
 // Lazy load the video component
 const LazyVideo = lazy(() => import('./components/LazyVideo'));
 
-const SkinSelector = ({ videoTime, isVideoPlaying }) => {
-  const [hasInteracted, setHasInteracted] = useState(false);
-
-  useEffect(() => {
-    const handleFirstInteraction = () => {
-      if (!hasInteracted) {
-        const video = document.getElementById('mainVideo');
-        if (video) {
-          video.currentTime = videoTime;
-          video.play();
-          setHasInteracted(true);
-        }
-      }
-    };
-
-    // Add event listeners for various interactions
-    window.addEventListener('click', handleFirstInteraction);
-    window.addEventListener('scroll', handleFirstInteraction);
-    window.addEventListener('touchstart', handleFirstInteraction);
-    window.addEventListener('keydown', handleFirstInteraction);
-    window.addEventListener('mousemove', handleFirstInteraction);
-
-    return () => {
-      window.removeEventListener('click', handleFirstInteraction);
-      window.removeEventListener('scroll', handleFirstInteraction);
-      window.removeEventListener('touchstart', handleFirstInteraction);
-      window.removeEventListener('keydown', handleFirstInteraction);
-      window.removeEventListener('mousemove', handleFirstInteraction);
-    };
-  }, [hasInteracted, videoTime]);
-
-  useEffect(() => {
-    const video = document.getElementById('mainVideo');
-    if (video && isVideoPlaying) {
-      video.currentTime = videoTime;
-      video.play();
-    }
-  }, [videoTime, isVideoPlaying]);
-
+const SkinSelector = () => {
   // Add this at the beginning of your component, after the imports
   useEffect(() => {
     const style = document.createElement("style");
