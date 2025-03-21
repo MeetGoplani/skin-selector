@@ -12,19 +12,42 @@ const ClickableImage = () => {
     const video = document.getElementById('mainVideo');
     
     if (video) {
-      // Start playing video and audio immediately
-      video.play().catch(err => console.log("Video playback prevented:", err));
-      if (audioRef.current) {
-        audioRef.current.currentTime = video.currentTime;
-        audioRef.current.play().catch(err => console.log("Audio playback prevented:", err));
-      }
-      setIsPlaying(true);
-    }
+      // Set video to fixed position and keep playing
+      video.style.position = 'fixed';
+      video.style.zIndex = '1';
+      
+      // Ensure continuous playback
+      const playMedia = () => {
+        Promise.all([
+          video.play(),
+          audioRef.current?.play()
+        ]).catch(err => console.log("Playback prevented:", err));
+        
+        if (audioRef.current) {
+          audioRef.current.currentTime = video.currentTime;
+        }
+      };
 
-    // Remove scroll handler since we want continuous playback
-    return () => {
-      // Don't pause on unmount - let it keep playing
+      playMedia();
+      video.addEventListener('ended', playMedia);
+      
+      return () => {
+        video.removeEventListener('ended', playMedia);
+      };
+    }
+  }, []);
+
+  // Add time sync for audio and video
+  useEffect(() => {
+    const video = document.getElementById('mainVideo');
+    const syncAudio = () => {
+      if (audioRef.current && Math.abs(video.currentTime - audioRef.current.currentTime) > 0.1) {
+        audioRef.current.currentTime = video.currentTime;
+      }
     };
+
+    video?.addEventListener('timeupdate', syncAudio);
+    return () => video?.removeEventListener('timeupdate', syncAudio);
   }, []);
 
   const togglePlay = () => {
