@@ -285,7 +285,7 @@ const SkinSelector = () => {
             href="https://linktr.ee/miraricielador" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="no-underline mt-0 sm:mt-0 md:mt-4"
+            className="no-underline mt-0 sm:mt-0 md:mt-6"
           >
             <p className="text-4xl sm:text-6xl md:text-7xl font-bold text-[#e50046] font-['Pastor_of_Muppets'] pt-0 sm:pt-10">
               socials
