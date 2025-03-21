@@ -12,11 +12,7 @@ const ClickableImage = () => {
     const video = document.getElementById('mainVideo');
     
     if (video) {
-      // Set video to fixed position and keep playing
-      video.style.position = 'fixed';
-      video.style.zIndex = '1';
-      
-      // Ensure continuous playback
+      // Ensure continuous playback without fixed positioning
       const playMedia = () => {
         Promise.all([
           video.play(),
