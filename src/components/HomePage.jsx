@@ -3,36 +3,28 @@ import { Link } from "react-router-dom";
 import { useAudioVideo } from "../context/AudioContext";
 
 const ClickableImage = () => {
-  const [isLoading, setIsLoading] = useState(true);
   const { videoRef, isPlaying, startPlayback } = useAudioVideo();
 
   useEffect(() => {
-    // Create a container for the persistent video
-    const container = document.getElementById('video-container');
-    
-    const handleScroll = () => {
-      if (!container) return;
-      
-      const rect = container.getBoundingClientRect();
-      const isInView = (
-        rect.top >= 0 &&
-        rect.top <= window.innerHeight &&
-        rect.bottom >= 0 &&
-        rect.bottom <= window.innerHeight
-      );
-
-      if (isInView) {
-        startPlayback();
-      }
+    const handleInteraction = () => {
+      startPlayback();
     };
 
-    window.addEventListener('scroll', handleScroll);
-    // Initial check
-    handleScroll();
+    // Add event listeners for various interactions
+    window.addEventListener('click', handleInteraction);
+    window.addEventListener('scroll', handleInteraction);
+    window.addEventListener('keydown', handleInteraction);
+    window.addEventListener('touchstart', handleInteraction);
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('click', handleInteraction);
+      window.removeEventListener('scroll', handleInteraction);
+      window.removeEventListener('keydown', handleInteraction);
+      window.removeEventListener('touchstart', handleInteraction);
+    };
   }, [startPlayback]);
 
+  // Remove the scroll-specific effect
   return (
     <>
       <div className="w-full flex justify-between items-center px-0 pt-6 bg-black z-10">
@@ -79,16 +71,10 @@ const ClickableImage = () => {
       </div>
 
       <div className="w-full flex justify-center my-8 relative px-4 sm:px-6 md:px-8">
-        {isLoading && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-[#e50046]"></div>
-          </div>
-        )}
         <div 
           id="video-container"
           className="w-full max-w-4xl h-auto object-contain bg-black"
           onClick={startPlayback}
-          onLoadedData={() => setIsLoading(false)}
         >
           {/* The persistent video will be inserted here by the context */}
         </div>
