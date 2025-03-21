@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useAudioVideo } from "../context/AudioContext";
 
 const ClickableImage = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(false);
+  const { videoRef, isPlaying, startPlayback } = useAudioVideo();
 
   useEffect(() => {
-    const video = document.getElementById('mainVideo');
+    // Create a container for the persistent video
+    const container = document.getElementById('video-container');
     
     const handleScroll = () => {
-      if (!video) return;
+      if (!container) return;
       
-      const rect = video.getBoundingClientRect();
+      const rect = container.getBoundingClientRect();
       const isInView = (
         rect.top >= 0 &&
         rect.top <= window.innerHeight &&
@@ -21,10 +22,8 @@ const ClickableImage = () => {
       );
 
       if (isInView) {
-        video.play().catch(err => console.log("Playback prevented:", err));
-        setIsPlaying(true);
+        startPlayback();
       }
-      // Removed the else block that was pausing the video
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -32,23 +31,7 @@ const ClickableImage = () => {
     handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const togglePlay = () => {
-    const video = document.getElementById('mainVideo');
-    if (isPlaying) {
-      video.pause();
-    } else {
-      video.play();
-    }
-    setIsPlaying(!isPlaying);
-  };
-
-  const toggleMute = () => {
-    const video = document.getElementById('mainVideo');
-    video.muted = !isMuted;
-    setIsMuted(!isMuted);
-  };
+  }, [startPlayback]);
 
   return (
     <>
@@ -101,23 +84,14 @@ const ClickableImage = () => {
             <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-[#e50046]"></div>
           </div>
         )}
-        <video 
-          id="mainVideo"
-          autoPlay
-          muted
-          loop 
-          controls
-          playsInline
+        <div 
+          id="video-container"
           className="w-full max-w-4xl h-auto object-contain bg-black"
+          onClick={startPlayback}
           onLoadedData={() => setIsLoading(false)}
-          onError={(e) => console.error("Video Error:", e)}
-          poster="/images/video-thumbnail.jpg"
         >
-          <source 
-            src="/videos/teaser.mp4" 
-            type="video/mp4" 
-          />
-        </video>
+          {/* The persistent video will be inserted here by the context */}
+        </div>
       </div>
 
       <div className="w-full px-4 sm:px-6 md:px-8">
@@ -138,7 +112,6 @@ const ClickableImage = () => {
               width: "100px",
               height: "50px",
               left: 0,
-              // backgroundColor: "rgba(0, 255, 0, 0.3)", // Transparent green overlay
             }}
           />
 
@@ -152,7 +125,6 @@ const ClickableImage = () => {
               left: "84%",
               width: "100px",
               height: "50px",
-              // backgroundColor: "rgba(0, 255, 0, 0.3)", // Transparent green overlay
             }}
           />
         </div>
