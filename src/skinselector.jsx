@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { skinsByTab } from "./lib/videoData";
 import { Link } from "react-router-dom";
 import { Suspense, lazy } from 'react';
-import { AudioContext } from "./context/AudioContext";
 
 // Lazy load the video component
 const LazyVideo = lazy(() => import('./components/LazyVideo'));
@@ -184,9 +183,6 @@ const SkinSelector = () => {
   };
 
   const playAudio = (audioSrc) => {
-    // Add AudioContext
-    const { videoRef } = useContext(AudioContext);
-    
     if (audioRef.current) {
       audioRef.current.src = audioSrc;
       audioRef.current
