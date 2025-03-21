@@ -123,7 +123,7 @@ const ClickableImage = () => {
       <div className="w-full px-4 sm:px-6 md:px-8">
         <div className="relative w-full max-w-4xl mx-auto">
           <img
-            src="/public/splash.jpeg"
+            src="/splash.jpeg"
             alt="Interactive Image"
             className="w-full h-auto"
           />
