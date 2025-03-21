@@ -1,21 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { Routes, Route } from 'react-router-dom'
-import SkinSelector from './skinselector'
-import HomePage from './components/HomePage'
-import { AudioProvider } from './context/AudioContext'
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './components/HomePage';
+import SkinSelector from './skinselector';
 
-function App() {
+const App = () => {
+  const [videoTime, setVideoTime] = useState(0);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+
   return (
-    <AudioProvider>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/skins" element={<SkinSelector />} />
-      </Routes>
-    </AudioProvider>
-  )
-}
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<HomePage videoTime={videoTime} setVideoTime={setVideoTime} isVideoPlaying={isVideoPlaying} setIsVideoPlaying={setIsVideoPlaying} />} />
+          <Route path="/skins" element={<SkinSelector videoTime={videoTime} isVideoPlaying={isVideoPlaying} />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+};
 
-export default App
+export default App;
