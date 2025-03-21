@@ -1,33 +1,57 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { useAudioVideo } from "../context/AudioContext";
+import { AudioContext } from "../context/AudioContext";
 
 const ClickableImage = () => {
-  const { videoRef, isPlaying, startPlayback } = useAudioVideo();
+  const [isLoading, setIsLoading] = useState(true);
+  const { videoRef, isPlaying } = useContext(AudioContext);
+  const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
-    const handleInteraction = () => {
-      startPlayback();
+    const video = document.getElementById('mainVideo');
+    
+    const handleScroll = () => {
+      if (!video) return;
+      
+      const rect = video.getBoundingClientRect();
+      const isInView = (
+        rect.top >= 0 &&
+        rect.top <= window.innerHeight &&
+        rect.bottom >= 0 &&
+        rect.bottom <= window.innerHeight
+      );
+
+      if (isInView) {
+        video.play().catch(err => console.log("Playback prevented:", err));
+      }
     };
 
-    // Add event listeners for various interactions
-    window.addEventListener('click', handleInteraction);
-    window.addEventListener('scroll', handleInteraction);
-    window.addEventListener('keydown', handleInteraction);
-    window.addEventListener('touchstart', handleInteraction);
+    window.addEventListener('scroll', handleScroll);
+    // Initial check
+    handleScroll();
 
-    return () => {
-      window.removeEventListener('click', handleInteraction);
-      window.removeEventListener('scroll', handleInteraction);
-      window.removeEventListener('keydown', handleInteraction);
-      window.removeEventListener('touchstart', handleInteraction);
-    };
-  }, [startPlayback]);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-  // Remove the scroll-specific effect
+  const togglePlay = () => {
+    const video = document.getElementById('mainVideo');
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
+    }
+  };
+
+  const toggleMute = () => {
+    const video = document.getElementById('mainVideo');
+    video.muted = !isMuted;
+    setIsMuted(!isMuted);
+  };
+
   return (
     <>
       <div className="w-full flex justify-between items-center px-0 pt-6 bg-black z-10">
+        {/* Header content remains unchanged */}
         <div className="w-16 md:w-32">
           <img
             src="/images/percentage.gif"
@@ -71,15 +95,27 @@ const ClickableImage = () => {
       </div>
 
       <div className="w-full flex justify-center my-8 relative px-4 sm:px-6 md:px-8">
-        <div 
-          id="video-container"
+        {/* Removed the red loading animation */}
+        <video 
+          id="mainVideo"
+          autoPlay
+          muted
+          loop 
+          controls
+          playsInline
           className="w-full max-w-4xl h-auto object-contain bg-black"
-          onClick={startPlayback}
+          onLoadedData={() => setIsLoading(false)}
+          onError={(e) => console.error("Video Error:", e)}
+          poster="/images/video-thumbnail.jpg"
         >
-          {/* The persistent video will be inserted here by the context */}
-        </div>
+          <source 
+            src="/videos/teaser.mp4" 
+            type="video/mp4" 
+          />
+        </video>
       </div>
 
+      {/* Rest of the component remains unchanged */}
       <div className="w-full px-4 sm:px-6 md:px-8">
         <div className="relative w-full max-w-4xl mx-auto">
           <img

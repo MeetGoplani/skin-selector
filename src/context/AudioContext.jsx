@@ -1,67 +1,54 @@
-import React, { createContext, useContext, useRef, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { createContext, useEffect, useRef, useState } from 'react';
 
-export const AudioContext = createContext();
-
-export const useAudioVideo = () => useContext(AudioContext);
+export const AudioContext = createContext({
+  videoRef: { current: null },
+  isPlaying: false
+});
 
 export const AudioProvider = ({ children }) => {
-  const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const location = useLocation();
-  const isHomePage = location.pathname === '/';
+  const videoRef = useRef(null);
 
   useEffect(() => {
-    // Create a video element that will persist across routes
-    const video = document.createElement('video');
-    video.src = '/videos/teaser.mp4';
-    video.loop = true;
-    video.muted = !isHomePage; // Mute on skins page, unmute on home
-    video.style.display = isHomePage ? 'block' : 'none'; // Only show on homepage
-    video.id = 'persistent-video';
-    video.playsInline = true;
-    
-    // Add to DOM if on homepage, otherwise just keep reference
-    if (isHomePage) {
-      const container = document.getElementById('video-container');
-      if (container && !container.contains(video)) {
-        container.appendChild(video);
-      }
-    }
-    
-    videoRef.current = video;
+    const audio = new Audio('/videos/teaser.m4a');
+    audio.loop = true;
+    let hasStarted = false;
+    videoRef.current = audio;
 
-    return () => {
-      // Don't remove the video element on unmount, just detach if needed
-      if (video.parentNode && isHomePage) {
-        video.parentNode.removeChild(video);
+    const startAudio = () => {
+      if (!hasStarted) {
+        audio.play()
+          .then(() => {
+            hasStarted = true;
+            setIsPlaying(true);
+          })
+          .catch(error => console.log("Audio playback prevented:", error));
       }
     };
-  }, [isHomePage]);
 
-  // Handle route changes
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isHomePage;
-      videoRef.current.style.display = isHomePage ? 'block' : 'none';
-    }
-  }, [isHomePage]);
+    // Handle various user interactions
+    const handleInteraction = () => {
+      startAudio();
+    };
 
-  const startPlayback = () => {
-    if (videoRef.current && !isPlaying) {
-      videoRef.current.play()
-        .then(() => {
-          setIsPlaying(true);
-        })
-        .catch(error => console.log("Video playback prevented:", error));
-    }
-  };
+    // Add event listeners for common user interactions
+    window.addEventListener('scroll', handleInteraction);
+    window.addEventListener('click', handleInteraction);
+    window.addEventListener('touchstart', handleInteraction);
+    window.addEventListener('keydown', handleInteraction);
+    
+    return () => {
+      audio.pause();
+      window.removeEventListener('scroll', handleInteraction);
+      window.removeEventListener('click', handleInteraction);
+      window.removeEventListener('touchstart', handleInteraction);
+      window.removeEventListener('keydown', handleInteraction);
+    };
+  }, []);
 
-  const value = {
-    videoRef,
-    isPlaying,
-    startPlayback
-  };
-
-  return <AudioContext.Provider value={value}>{children}</AudioContext.Provider>;
+  return (
+    <AudioContext.Provider value={{ videoRef, isPlaying }}>
+      {children}
+    </AudioContext.Provider>
+  );
 };

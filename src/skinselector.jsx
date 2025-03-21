@@ -2,15 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { skinsByTab } from "./lib/videoData";
 import { Link } from "react-router-dom";
 import { Suspense, lazy } from 'react';
-import { useAudioVideo } from "./context/AudioContext";
+import { AudioContext } from "./context/AudioContext";
 
 // Lazy load the video component
 const LazyVideo = lazy(() => import('./components/LazyVideo'));
 
 const SkinSelector = () => {
-  // Use the shared audio/video context
-  const { videoRef: persistentVideoRef, startPlayback } = useAudioVideo();
-  
   // Add this at the beginning of your component, after the imports
   useEffect(() => {
     const style = document.createElement("style");
@@ -49,16 +46,8 @@ const SkinSelector = () => {
       }
     `;
     document.head.appendChild(style);
-    
-    // Ensure the persistent video continues playing but is muted on this page
-    if (persistentVideoRef.current) {
-      persistentVideoRef.current.muted = true;
-      persistentVideoRef.current.style.display = 'none';
-      startPlayback();
-    }
-    
     return () => document.head.removeChild(style);
-  }, [persistentVideoRef, startPlayback]);
+  }, []);
 
   // Add this with other state variables at the top
   const [activeTab, setActiveTab] = useState("ALL");
@@ -195,6 +184,9 @@ const SkinSelector = () => {
   };
 
   const playAudio = (audioSrc) => {
+    // Add AudioContext
+    const { videoRef } = useContext(AudioContext);
+    
     if (audioRef.current) {
       audioRef.current.src = audioSrc;
       audioRef.current
