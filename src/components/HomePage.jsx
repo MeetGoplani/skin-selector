@@ -4,65 +4,36 @@ import { Link } from "react-router-dom";
 const ClickableImage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(false);
-  // Add this after the existing state variables
-  const audioRef = useRef(null);
+  // Remove isMuted and audioRef
 
   useEffect(() => {
     const video = document.getElementById('mainVideo');
     
     if (video) {
-      // Ensure continuous playback without fixed positioning
-      const playMedia = () => {
-        Promise.all([
-          video.play(),
-          audioRef.current?.play()
-        ]).catch(err => console.log("Playback prevented:", err));
-        
-        if (audioRef.current) {
-          audioRef.current.currentTime = video.currentTime;
-        }
+      video.muted = false; // Ensure video is not muted
+      video.play().catch(err => console.log("Video playback prevented:", err));
+      
+      // Add event listeners for various interactions
+      const playVideo = () => {
+        video.play().catch(err => console.log("Video playback prevented:", err));
       };
 
-      playMedia();
-      video.addEventListener('ended', playMedia);
+      window.addEventListener('scroll', playVideo);
+      window.addEventListener('keydown', playVideo);
+      window.addEventListener('click', playVideo);
+      window.addEventListener('touchstart', playVideo);
       
       return () => {
-        video.removeEventListener('ended', playMedia);
+        window.removeEventListener('scroll', playVideo);
+        window.removeEventListener('keydown', playVideo);
+        window.removeEventListener('click', playVideo);
+        window.removeEventListener('touchstart', playVideo);
       };
     }
   }, []);
 
-  // Add time sync for audio and video
-  useEffect(() => {
-    const video = document.getElementById('mainVideo');
-    const syncAudio = () => {
-      if (audioRef.current && Math.abs(video.currentTime - audioRef.current.currentTime) > 0.1) {
-        audioRef.current.currentTime = video.currentTime;
-      }
-    };
+  // Remove togglePlay function as we want continuous playback
 
-    video?.addEventListener('timeupdate', syncAudio);
-    return () => video?.removeEventListener('timeupdate', syncAudio);
-  }, []);
-
-  const togglePlay = () => {
-    const video = document.getElementById('mainVideo');
-    if (isPlaying) {
-      video.pause();
-      if (audioRef.current) {
-        audioRef.current.pause();
-      }
-    } else {
-      video.play();
-      if (audioRef.current) {
-        audioRef.current.play();
-      }
-    }
-    setIsPlaying(!isPlaying);
-  };
-
-  // Add this in the JSX return, before the closing fragment
   return (
     <>
       <div className="w-full flex justify-between items-center px-0 pt-6 bg-black z-10">
@@ -170,12 +141,7 @@ const ClickableImage = () => {
           />
         </div>
       </div>
-      <audio 
-            ref={audioRef}
-            src="/videos/teaser.mp4"
-            loop
-            preload="auto"
-          />
+      {/* Remove audio element */}
     </>
   );
 };

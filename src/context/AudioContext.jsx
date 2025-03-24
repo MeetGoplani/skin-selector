@@ -4,7 +4,7 @@ export const AudioContext = createContext();
 
 export const AudioProvider = ({ children }) => {
   useEffect(() => {
-    const audio = new Audio('/videos/teaser.m4a');
+    const audio = new Audio('');
     audio.loop = true;
     let hasStarted = false;
 

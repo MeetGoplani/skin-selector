@@ -54,9 +54,9 @@ const SkinSelector = () => {
   const [screenSize, setScreenSize] = useState("large");
   const [clickedItem, setClickedItem] = useState(null);
   const [hoveredItem, setHoveredItem] = useState(null);
-  const [loadedVideos, setLoadedVideos] = useState({}); // Add this line
-  const audioRef = useRef(null);
+  const [loadedVideos, setLoadedVideos] = useState({});
   const videoRefs = useRef({});
+  // Remove audioRef
 
   // Check screen size
   useEffect(() => {
@@ -160,50 +160,37 @@ const SkinSelector = () => {
   const handleItemInteraction = (skin) => {
     if (isMobile) {
       if (clickedItem === skin.id) {
-        // Second tap - open popup
         setSelectedSkin(skin);
         setClickedItem(null);
       } else {
-        // First tap - play video and audio
         setClickedItem(skin.id);
         const videoRef = videoRefs.current[skin.id];
         if (videoRef) {
-          videoRef.play().catch((e) => {
-            if (e.name !== "AbortError") {
-              console.error("Video playback failed:", e);
-            }
-          });
+          videoRef.muted = false;
+          videoRef.play().catch(e => console.error("Video playback failed:", e));
         }
-        playAudio(skin.audio);
       }
     } else {
-      // On desktop: click opens popup
       setSelectedSkin(skin);
     }
   };
 
-  const playAudio = (audioSrc) => {
-    if (audioRef.current) {
-      audioRef.current.src = audioSrc;
-      audioRef.current
-        .play()
-        .catch((e) => console.error("Audio playback failed:", e));
-    }
-  };
+  // Remove playAudio function
 
   const handleMouseEnter = (skin) => {
     if (!isMobile) {
       setHoveredItem(skin.id);
-      playAudio(skin.audio);
+      const videoRef = videoRefs.current[skin.id];
+      if (videoRef) {
+        videoRef.muted = false;
+        videoRef.play().catch(e => console.error("Video playback failed:", e));
+      }
     }
   };
 
   const handleMouseLeave = () => {
     if (!isMobile) {
       setHoveredItem(null);
-      if (audioRef.current) {
-        audioRef.current.pause();
-      }
     }
   };
 
