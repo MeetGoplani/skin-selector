@@ -289,7 +289,8 @@ const SkinSelector = () => {
         </div>
       </div>
       <div className="flex flex-col items-center min-h-screen w-full bg-black text-white overflow-y-auto pb-16 m-0">
-        <audio ref={audioRef} className="hidden" />
+        {/* Remove this line */}
+        {/* <audio ref={audioRef} className="hidden" /> */}
 
         {/* Tabs layout - 3x2 grid on small screens, original layout on larger screens */}
         <div
