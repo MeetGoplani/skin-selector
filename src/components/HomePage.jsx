@@ -98,7 +98,7 @@ const ClickableImage = () => {
           poster="/images/video-thumbnail.jpg"
         >
           <source 
-            src="/videos/teaser.mp4" 
+            src="https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Resbzi1dewyBu1vd4nWrQOiVeGSXY8gRbcTJLx" 
             type="video/mp4" 
           />
         </video>
@@ -107,7 +107,7 @@ const ClickableImage = () => {
       <div className="w-full px-4 sm:px-6 md:px-8">
         <div className="relative w-full max-w-4xl mx-auto">
           <img
-            src="/splash.jpeg"
+            src="https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Re5Z5AWKYUXMuE3ThVrFqIzoy97pCajcbiGWe6"
             alt="Interactive Image"
             className="w-full h-auto"
           />
