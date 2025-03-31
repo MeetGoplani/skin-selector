@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import ReactDOM from 'react-dom';
 import { skinsByTab } from "./lib/videoData";
 import { Link } from "react-router-dom";
 import { Suspense, lazy } from 'react';
@@ -242,6 +243,26 @@ const SkinSelector = () => {
     return () => observer.disconnect();
   }, [loading]);
 
+  // Add this new useEffect to disable body scrolling when popup is open
+  useEffect(() => {
+    if (selectedSkin) {
+      // Save current scroll position
+      const scrollY = window.scrollY;
+      // Disable scrolling on body
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+      
+      // Restore scrolling when popup closes
+      return () => {
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo(0, scrollY);
+      };
+    }
+  }, [selectedSkin]);
+
   // Modify the grid layout section to include infinite scroll
   return (
     <>
@@ -409,10 +430,23 @@ const SkinSelector = () => {
         {/* Safe area at the bottom to ensure all content is accessible */}
         <div className="h-16"></div>
 
-        {/* Updated Responsive Popup */}
-        {selectedSkin && (
-          <div className="fixed inset-0 bg-black bg-opacity-80 flex flex-col items-center justify-start sm:justify-center z-50 overflow-y-auto min-h-screen p-4 pt-10">
-            <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md">
+        {/* Popup Implementation */}
+        {selectedSkin && ReactDOM.createPortal(
+          <div 
+            className="fixed inset-0 bg-black bg-opacity-80 flex flex-col items-center justify-center"
+            style={{
+              position: 'fixed', 
+              top: '0', 
+              left: '0', 
+              right: '0', 
+              bottom: '0',
+              zIndex: 999999,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md bg-black p-4 rounded-lg">
               <button
                 onClick={() => setSelectedSkin(null)}
                 className="text-gray-300 !bg-black hover:text-white text-lg sm:text-xl absolute -left-8 -top-8 sm:-left-20"
@@ -422,31 +456,32 @@ const SkinSelector = () => {
               <h2 className="text-xl sm:text-2xl text-[#00ffce] font-bold truncate text-center mb-4">
                 {selectedSkin.id}
               </h2>
-            </div>
-
-            <div className="bg-gray-900 border-4 border-[#0012ff] rounded-lg w-full max-w-xs sm:max-w-sm md:max-w-md">
-              <div className="aspect-square w-full">
-                <video
-                  src={selectedSkin.video}
-                  className="w-full h-full object-cover rounded-lg"
-                  controls
-                  autoPlay
-                  loop
-                  playsInline
-                />
+            
+              <div className="bg-gray-900 border-4 border-[#0012ff] rounded-lg w-full">
+                <div className="aspect-square w-full">
+                  <video
+                    src={selectedSkin.video}
+                    className="w-full h-full object-cover rounded-lg"
+                    controls
+                    autoPlay
+                    loop
+                    playsInline
+                  />
+                </div>
               </div>
+              {selectedSkin.link && (
+                <a
+                  href={selectedSkin.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block !text-[#e5a700] hover:text-cyan-300 underline mt-4 break-all text-center w-full px-4"
+                >
+                  {selectedSkin.link}
+                </a>
+              )}
             </div>
-            {selectedSkin.link && (
-              <a
-                href={selectedSkin.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block !text-[#e5a700] hover:text-cyan-300 underline mt-4 break-all text-center w-full max-w-xs sm:max-w-sm md:max-w-md px-4"
-              >
-                {selectedSkin.link}
-              </a>
-            )}
-          </div>
+          </div>,
+          document.body
         )}
       </div>
     </>
