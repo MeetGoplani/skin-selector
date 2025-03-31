@@ -84,7 +84,7 @@ body{
 
 /* Add this to your existing styles */
 #root {
-  transform: scale(1.1);
+  transform: scale(1.0);
   transform-origin: center top;
   width: 100vw;
   min-height: 100vh;
