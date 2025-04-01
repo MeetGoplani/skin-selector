@@ -5,7 +5,7 @@ export const skinsByTab = {
       preview: "/images/OG/OG00.png",
       video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0RecV0bRMCLW6upV1KAhok2JFiUEYHRQZntXGyD",
       audio: "/api/placeholder/audio",
-      link: "https://launchmynft.io/collections/HpTP7Vy7TZRTp2yLqsRVsKeXihZTqDKJZzoiTpT82mqs/i2WJe6Bas4ydAE2jdVg0iTpT82mqs/i2WJe6Bas4ydAE2jdVg0"
+      link: "https://launchmynft.io/collections/HpTP7Vy7TZRTp2yLqsRVsKeXihZTqDKJZzoiTpT82mqs/i2WJe6Bas4ydAE2jdVg0"
     },
     {
       id: "OG01",
@@ -1041,7 +1041,7 @@ export const skinsByTab = {
       preview: "/images/GLORP/GLORP582.png",
       video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0RewhIQGbLHJm0vDtIG68hRWfg9yoMOxbjNuY5Z",
       audio: "/api/placeholder/audio",
-      link: "https://www.tensor.trade/item/9zSBGaiMxfxtphtxWB4Hsq3h3c5XwFwusw2q7CFjA2wW"
+      link: "https://www.tensor.trade/item/CCEauKy4ZUHBcdtJWEpvvnrjmrunWp3RBVTEiMgif2Wj"
     },
     {
       id: "GLORP695",
