@@ -272,7 +272,8 @@ const SkinSelector = () => {
           <img
             src="/images/percentage.gif"
             alt="Left Animation"
-            className="w-16 h-16 md:w-48 md:h-48 fixed left-0 top-0"
+            className="w-16 h-16 sm:w-24 sm:h-24 md:w-16 md:h-16 lg:w-48 lg:h-48 fixed left-0 top-0"
+            style={{ zIndex: 9999 }} 
           />
         </div>
 
@@ -305,7 +306,8 @@ const SkinSelector = () => {
           <img
             src="/images/percentage.gif"
             alt="Right Animation"
-            className="w-16 h-16 md:w-48 md:h-48 fixed right-0 top-0"
+            className="w-16 h-16 sm:w-24 sm:h-24 md:w-16 md:h-16 lg:w-48 lg:h-48 fixed right-0 top-0"
+            style={{ zIndex: 9999 }}  
           />
         </div>
       </div>

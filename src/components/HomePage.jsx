@@ -45,7 +45,8 @@ const ClickableImage = () => {
           <img
             src="/images/percentage.gif"
             alt="Left Animation"
-            className="w-16 h-16 md:w-48 md:h-48 fixed left-0 top-0"
+            className="w-16 h-16 sm:w-24 sm:h-24 md:w-16 md:h-16 lg:w-48 lg:h-48 fixed left-0 top-0"
+            style={{ zIndex: 9999 }}
           />
         </div>
 
@@ -78,12 +79,14 @@ const ClickableImage = () => {
           <img
             src="/images/percentage.gif"
             alt="Right Animation"
-            className="w-16 h-16 md:w-48 md:h-48 fixed right-0 top-0"
+            className="w-16 h-16 sm:w-24 sm:h-24 md:w-16 md:h-16 lg:w-48 lg:h-48 fixed right-0 top-0"
+            style={{ zIndex: 9999 }}
           />
         </div>
       </div>
 
-      <div className="w-full flex justify-center my-8 relative px-4 sm:px-6 md:px-8">
+      {/* Video section with stronger centering for iPad/tablet screens */}
+      <div className="w-full flex flex-col items-center justify-center my-8 relative px-4 sm:px-6 md:px-8">
         {isLoading && (
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-[#e50046]"></div>
@@ -96,7 +99,8 @@ const ClickableImage = () => {
           loop
           controls
           playsInline
-          className="w-full max-w-4xl h-auto object-contain bg-black"
+          className="w-full max-w-4xl h-auto object-contain bg-black mx-auto"
+          style={{ margin: '0 auto', display: 'block' }}
           onLoadedData={() => setIsLoading(false)}
           onError={(e) => console.error("Video Error:", e)}
           poster="/images/video-thumbnail.jpg"
@@ -108,12 +112,14 @@ const ClickableImage = () => {
         </video>
       </div>
 
-      <div className="w-full px-4 sm:px-6 md:px-8">
-        <div className="relative w-full max-w-4xl mx-auto">
+      {/* Interactive image section with stronger centering */}
+      <div className="w-full flex flex-col items-center justify-center px-4 sm:px-6 md:px-8">
+        <div className="relative w-full max-w-4xl" style={{ margin: '0 auto' }}>
           <img
             src="https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReD6gmVyimRarG5XP8UE2OZBseHyzuwd7JIYAi"
             alt="Interactive Image"
             className="w-full h-auto"
+            style={{ margin: '0 auto', display: 'block' }}
           />
           <Link to="/skins" className="no-underline">
             <a
@@ -126,7 +132,6 @@ const ClickableImage = () => {
                 width: "100px",
                 height: "50px",
                 left: 0,
-                // backgroundColor: "rgba(0, 255, 0, 0.3)", // Transparent green overlay
               }}
             />
           </Link>
@@ -140,7 +145,6 @@ const ClickableImage = () => {
               left: "84%",
               width: "100px",
               height: "50px",
-              // backgroundColor: "rgba(0, 255, 0, 0.3)", // Transparent green overlay
             }}
           />
         </div>

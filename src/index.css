@@ -91,6 +91,14 @@ body{
   overflow-x: hidden;
 }
 
+/* Apply scale 1.1 only on larger screens */
+@media (min-width: 1024px) {
+  #root {
+    transform: scale(1.1);
+  }
+}
+
+
 body {
   margin: 0;
   padding: 0;
