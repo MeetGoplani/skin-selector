@@ -327,8 +327,8 @@ const SkinSelector = () => {
                   key={tab}
                   className={`py-2 px-3 text-xs !rounded-full overflow-hidden font-bold ${
                     activeTab === tab
-                      ? "!bg-[#0012ff] text-[#00ffce] border-[#0012ff]"
-                      : "!bg-black text-[#00ffce] !border-[#0012ff] !border-4 hover:border-opacity-100"
+                      ? "!bg-[#0012ff] text-[#00ffce] border-[#0012ff] !font-bold"
+                      : "!bg-black text-[#00ffce] !border-[#0012ff] !border-4 hover:border-opacity-100 !font-bold"
                   }`}
                   onClick={() => setActiveTab(tab)}
                 >
@@ -344,8 +344,8 @@ const SkinSelector = () => {
                   key={tab}
                   className={`py-2 px-3 text-xs tab-button font-bold ${
                     activeTab === tab
-                      ? "!bg-[#0012ff] text-[#00ffce] border-[#0012ff]"
-                      : "!bg-black text-[#00ffce] !border-[#0012ff] !border-4"
+                      ? "!bg-[#0012ff] text-[#00ffce] border-[#0012ff] !font-bold"
+                      : "!bg-black text-[#00ffce] !border-[#0012ff] !border-4 !font-bold"
                   }`}
                   onClick={() => setActiveTab(tab)}
                 >
