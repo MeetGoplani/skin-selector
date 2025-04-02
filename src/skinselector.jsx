@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { skinsByTab } from "./lib/videoData";
 import { Link } from "react-router-dom";
 import { Suspense, lazy } from 'react';
-import Header from "./components/header";
 
 // Lazy load the video component
 const LazyVideo = lazy(() => import('./components/LazyVideo'));
@@ -268,7 +267,7 @@ const SkinSelector = () => {
   return (
     <>
       {/* Header */}
-     <Header/>
+  
      
       <div className="flex flex-col items-center min-h-screen w-full bg-black text-white overflow-y-auto pb-16 m-0">
         {/* Remove this line */}

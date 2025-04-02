@@ -94,7 +94,7 @@ body{
 /* Apply scale 1.1 only on larger screens */
 @media (min-width: 1024px) {
   #root {
-    transform: scale(1.1);
+    transform: scale(1.15);
   }
 }
 

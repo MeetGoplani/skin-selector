@@ -815,7 +815,7 @@ export const skinsByTab = {
       preview: "/images/MILAURA/MILAURA975.png",
       video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Re7Yzf8LN9JFKEDQYCI8UzrToina6jWR4LqXcx",
       audio: "/api/placeholder/audio",
-      link: "https://www.tensor.trade/portfolio?wallet=8WaxTBpvAK2ght4F5K5ygFWrKXN6ANCN6Zotu9xr6His"
+      link: "https://www.tensor.trade/item/H4XQyK7brucf5WoyufdoUfgLqvh4nKqJKCeU5GDXpgox"
     },
     {
       id: "MILAURA1025",
@@ -871,7 +871,7 @@ export const skinsByTab = {
       preview: "/images/MILAURA/MILAURA2094.png",
       video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Re8yIrs4hFdHP0LE42QDWBthn3XVsIl9wZToAi",
       audio: "/api/placeholder/audio",
-      link: "https://www.tensor.trade/portfolio?wallet=8WaxTBpvAK2ght4F5K5ygFWrKXN6ANCN6Zotu9xr6His"
+      link: "https://www.tensor.trade/item/3hmSHqBRSRGod1jrDByCx8WLEyRjbjXhdDtEfT5jBRTa"
     },
     {
       id: "MILAURA2118",
@@ -948,7 +948,7 @@ export const skinsByTab = {
       preview: "/images/MILAURA/MILAURA2619.png",
       video: "https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0Re7kOYpIN9JFKEDQYCI8UzrToina6jWR4LqXcx",
       audio: "/api/placeholder/audio",
-      link: "https://www.tensor.trade/portfolio?wallet=8WaxTBpvAK2ght4F5K5ygFWrKXN6ANCN6Zotu9xr6His"
+      link: "https://www.tensor.trade/item/7ZH6e1mjimbrdD8Ce559tF8Kjn6bJrs2LdBPg321A4rF"
     },
     {
       id: "MILAURA2641",

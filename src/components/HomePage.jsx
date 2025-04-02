@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import Header from "./header";
 
 const ClickableImage = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -41,7 +40,6 @@ const ClickableImage = () => {
 
   return (
     <div className="">
-       <Header/>
       {/* Video section with stronger centering for iPad/tablet screens */}
       <div className="w-full flex flex-col items-center justify-center my-8 relative px-4 sm:px-6 md:px-8">
         {isLoading && (
