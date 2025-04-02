@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <div >
       <div className="w-full flex justify-between items-center px-0 pt-6 bg-black z-10">
-        <div className=" top-0 absolute left-0 w-16 md:w-32 ">
+        <div className=" top-0  left-0 w-16 md:w-32 ">
           <img
             src="/images/percentage.gif"
             alt="Left Animation"
