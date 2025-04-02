@@ -55,7 +55,7 @@ const ClickableImage = () => {
           controls
           playsInline
           className="w-full max-w-4xl h-auto object-contain bg-black mx-auto"
-          style={{ margin: '0 auto', display: 'block' }}
+          style={{ margin: '0 auto', display: 'block', position: 'relative', zIndex: 10 }}
           onLoadedData={() => setIsLoading(false)}
           onError={(e) => console.error("Video Error:", e)}
           poster="/images/video-thumbnail.jpg"
@@ -74,7 +74,7 @@ const ClickableImage = () => {
             src="https://ewcbje9d7p.ufs.sh/f/ijNs5VSrK0ReD6gmVyimRarG5XP8UE2OZBseHyzuwd7JIYAi"
             alt="Interactive Image"
             className="w-full h-auto"
-            style={{ margin: '0 auto', display: 'block' }}
+            style={{ margin: '0 auto', display: 'block', position: 'relative', zIndex: 10 }}
           />
           <Link to="/skins" className="no-underline">
             <div
