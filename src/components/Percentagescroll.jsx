@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 const PercentageScroll = () => {
   const [scrollY, setScrollY] = useState(0);
   const [screenSize, setScreenSize] = useState('large');
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,11 +39,17 @@ const PercentageScroll = () => {
     // Initialize
     handleScroll();
     checkScreenSize();
+    
+    // Set loaded state after a short delay to ensure DOM is fully rendered
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 100);
 
     // Clean up
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', checkScreenSize);
+      clearTimeout(timer);
     };
   }, []);
 
@@ -55,13 +62,15 @@ const PercentageScroll = () => {
   // CSS for the percentage symbols
   const percentageStyle = {
     position: 'fixed',
-    top: `${topPosition}%`,
+    top: isLoaded ? `${topPosition}%` : (screenSize === 'large' ? '5%' : '2%'),
     transform: 'translateY(-50%)',
     fontSize: '2rem',
     fontWeight: 'bold',
     color: '#0000ff',
     zIndex: screenSize === 'large' ? 9999 : 5,
     pointerEvents: 'none',
+    opacity: isLoaded ? 1 : 0,
+    transition: 'opacity 0.3s ease-in-out',
   };
 
   return (
@@ -77,6 +86,7 @@ const PercentageScroll = () => {
             src="/images/percentage.gif"
             alt="Left Animation"
             className="w-16 h-16 sm:w-24 sm:h-24 md:w-16 md:h-16 lg:w-48 lg:h-48"
+            onLoad={() => setIsLoaded(true)}
           />
       </div>
       
