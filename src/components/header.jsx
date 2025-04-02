@@ -6,12 +6,12 @@ export default function Header() {
     <div >
       <div className="w-full flex justify-between items-center px-0 pt-6 bg-black z-10">
         <div className=" top-0  left-0 w-16 md:w-32 ">
-          <img
+          {/* <img
             src="/images/percentage.gif"
             alt="Left Animation"
             className="w-16 h-16 sm:w-24 sm:h-24 md:w-16 md:h-16 lg:w-48 lg:h-48 lg:fixed left-0 top-0"
             style={{ zIndex: 9999 }}
-          />
+          /> */}
         </div>
 
         <div className="flex flex-col sm:flex-row items-center -space-y-5 sm:-space-y-5 sm:space-x-2 md:space-x-8">
@@ -40,12 +40,12 @@ export default function Header() {
         </div>
 
         <div className="w-16 md:w-32">
-          <img
+          {/* <img
             src="/images/percentage.gif"
             alt="Right Animation"
             className="w-16 h-16 sm:w-24 sm:h-24 md:w-16 md:h-16 lg:w-48 lg:h-48 lg:fixed right-0 top-0"
             style={{ zIndex: 9999 }}
-          />
+          /> */}
         </div>
       </div>
     </div>

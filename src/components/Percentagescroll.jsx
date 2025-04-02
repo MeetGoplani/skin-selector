@@ -1,0 +1,100 @@
+
+import React, { useEffect, useState } from 'react';
+
+const PercentageScroll = () => {
+  const [scrollY, setScrollY] = useState(0);
+  const [screenSize, setScreenSize] = useState('large');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Get scroll position
+      const currentScrollY = window.scrollY;
+      
+      // Get document height (total scrollable height)
+      const documentHeight = 
+        document.documentElement.scrollHeight - 
+        document.documentElement.clientHeight;
+      
+      // Calculate percentage scrolled (0 to 1)
+      const scrollPercentage = Math.min(currentScrollY / documentHeight, 1);
+      
+      // Update state with current scroll position
+      setScrollY(scrollPercentage);
+    };
+
+    // Check screen size
+    const checkScreenSize = () => {
+      if (window.innerWidth >= 1024) {
+        setScreenSize('large');
+      } else {
+        setScreenSize('medium-small');
+      }
+    };
+
+    // Add event listeners
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', checkScreenSize);
+    
+    // Initialize
+    handleScroll();
+    checkScreenSize();
+
+    // Clean up
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', checkScreenSize);
+    };
+  }, []);
+
+  // Calculate position based on scroll and screen size
+  // For smaller screens, start higher (2%) and have less movement range
+  const topPosition = screenSize === 'large' 
+    ? 5 + (scrollY * 85) // Large screens: Start at 5% and move down to 90%
+    : 2 + (scrollY * 40); // Smaller screens: Start at 2% and move down to 42%
+  
+  // CSS for the percentage symbols
+  const percentageStyle = {
+    position: 'fixed',
+    top: `${topPosition}%`,
+    transform: 'translateY(-50%)',
+    fontSize: '2rem',
+    fontWeight: 'bold',
+    color: '#0000ff',
+    zIndex: screenSize === 'large' ? 9999 : 5,
+    pointerEvents: 'none',
+  };
+
+  return (
+    <>
+      {/* Left percentage symbol */}
+      <div 
+        style={{ 
+          ...percentageStyle, 
+          left: '0rem',
+        }}
+      >
+        <img
+            src="/images/percentage.gif"
+            alt="Left Animation"
+            className="w-16 h-16 sm:w-24 sm:h-24 md:w-16 md:h-16 lg:w-48 lg:h-48"
+          />
+      </div>
+      
+      {/* Right percentage symbol */}
+      <div 
+        style={{ 
+          ...percentageStyle, 
+          right: '0rem',
+        }}
+      >
+        <img
+            src="/images/percentage.gif"
+            alt="Right Animation"
+            className="w-16 h-16 sm:w-24 sm:h-24 md:w-16 md:h-16 lg:w-48 lg:h-48"
+          />
+      </div>
+    </>
+  );
+};
+
+export default PercentageScroll;
