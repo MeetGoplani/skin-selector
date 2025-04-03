@@ -6,7 +6,7 @@ import PercentageScroll from "./Percentagescroll";
 const Layout = () => {
   return (
     <div className="min-h-screen relative bg-black">
-        <PercentageScroll/>
+        <PercentageScroll />
       <Header />
       <main>
         <Outlet />

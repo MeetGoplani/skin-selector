@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { skinsByTab } from "./lib/videoData";
 import { Link } from "react-router-dom";
 import { Suspense, lazy } from "react";
+import PercentageScroll from "./components/Percentagescroll"; // Add this import
 
 // Lazy load the video component
 const LazyVideo = lazy(() => import("./components/LazyVideo"));
@@ -409,6 +410,9 @@ const SkinSelector = () => {
   // Modify the grid layout section to include infinite scroll
   return (
     <>
+      {/* Add PercentageScroll component here */}
+      {/* <PercentageScroll pageType="skins" /> */}
+
       <div className="flex flex-col items-center min-h-screen w-full bg-black text-white overflow-y-auto pb-16 m-0">
         {/* Tabs layout - 3x2 grid on small screens, original layout on larger screens */}
         <div
