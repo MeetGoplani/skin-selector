@@ -123,7 +123,7 @@ const SkinSelector = () => {
     });
   };
 
-  // Setup IntersectionObserver for mobile devices only
+  // Setup IntersectionObserver for mobile devices
   const setupIntersectionObserver = () => {
     if (!("IntersectionObserver" in window) || !isMobile) return;
 
@@ -136,21 +136,9 @@ const SkinSelector = () => {
           const videoRef = videoRefs.current[skin];
           if (!videoRef) return;
 
-          if (entry.isIntersecting) {
-            // Play video when it comes into view (mobile only)
-            if (isMobile) {
-              videoRef.muted = true; // Keep muted on mobile until clicked
-              videoRef.play().catch((e) => {
-                if (e.name !== "AbortError") {
-                  console.error("Auto-play failed:", e);
-                }
-              });
-            }
-          } else if (isMobile && clickedItem !== skin) {
-            // Pause video when out of view on mobile if it's not the clicked item
-            if (!videoRef.paused) {
-              videoRef.pause();
-            }
+          // Only handle visibility changes - don't autoplay
+          if (!entry.isIntersecting && !videoRef.paused) {
+            videoRef.pause();
           }
         });
       },
@@ -174,7 +162,7 @@ const SkinSelector = () => {
     };
   }, [activeTab, isMobile]);
 
-  // Handle video playback on hover or click
+  // Modified: Handle video playback on hover or click
   useEffect(() => {
     const currentSkins = getCurrentSkins();
 
@@ -198,18 +186,8 @@ const SkinSelector = () => {
             console.error("Video playback failed:", e);
           }
         });
-      } else if (isMobile) {
-        // On mobile: keep playing but muted (for preview)
-        videoRef.muted = true;
-        if (videoRef.paused) {
-          videoRef.play().catch((e) => {
-            if (e.name !== "AbortError") {
-              console.error("Preview playback failed:", e);
-            }
-          });
-        }
       } else {
-        // On desktop: pause when not hovered
+        // Pause all other videos
         if (!videoRef.paused) {
           videoRef.pause();
           videoRef.currentTime = 0;
@@ -218,6 +196,7 @@ const SkinSelector = () => {
     });
   }, [hoveredItem, clickedItem, activeTab, isMobile]);
 
+  // Modified: Handle item interaction to ensure only one video plays at a time
   const handleItemInteraction = (skin) => {
     if (isMobile) {
       if (clickedItem === skin.id) {
@@ -225,7 +204,19 @@ const SkinSelector = () => {
         setSelectedSkin(skin);
         setClickedItem(null);
       } else {
-        // First click - unmute video and play with sound
+        // First click - pause all other videos
+        const currentSkins = getCurrentSkins();
+        currentSkins.forEach((item) => {
+          if (item.id !== skin.id) {
+            const videoRef = videoRefs.current[item.id];
+            if (videoRef && !videoRef.paused) {
+              videoRef.pause();
+              videoRef.currentTime = 0;
+            }
+          }
+        });
+
+        // Then play only the clicked video
         setClickedItem(skin.id);
         const videoRef = videoRefs.current[skin.id];
         if (videoRef) {
@@ -327,30 +318,11 @@ const SkinSelector = () => {
     }
   }, [selectedSkin]);
 
-  // Modified useEffect to auto-play videos on mobile when elements are visible
+  // Modified: Remove autoplay for mobile videos
   useEffect(() => {
-    if (!isMobile) return; // Only for mobile devices
-
-    // Start videos for initial visible items
-    const startInitialVideos = () => {
-      const currentSkins = getCurrentSkins().slice(0, visibleItems);
-      currentSkins.forEach((skin) => {
-        const videoRef = videoRefs.current[skin.id];
-        if (videoRef) {
-          videoRef.muted = true; // Start muted on mobile
-          videoRef.play().catch((e) => {
-            if (e.name !== "AbortError") {
-              console.error("Initial video playback failed:", e);
-            }
-          });
-        }
-      });
-    };
-
-    // Wait a moment for the videos to be rendered
-    const timer = setTimeout(startInitialVideos, 500);
-    return () => clearTimeout(timer);
-  }, [activeTab, visibleItems, isMobile]);
+    // Clear previous clicked item when tab changes
+    setClickedItem(null);
+  }, [activeTab]);
 
   // Modify the grid layout section to include infinite scroll
   return (
