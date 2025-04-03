@@ -226,18 +226,21 @@ const SkinSelector = () => {
       [skinId]: true,
     }));
 
-    // For mobile, load the first frame but don't continue playing
+    // For mobile, ensure the first frame is visible
     const videoRef = videoRefs.current[skinId];
     if (videoRef && isMobile) {
-      // Play briefly to load the first frame, then pause
+      // Set the current time to 0 to show the first frame
+      videoRef.currentTime = 0;
+      
+      // Play briefly to ensure the frame is loaded, then pause immediately
       videoRef.muted = true;
       videoRef.play().then(() => {
-        // Wait a tiny bit to ensure the frame is loaded
-        setTimeout(() => {
-          if (skinId !== clickedItem) {
+        // If this isn't the clicked item, pause it after showing first frame
+        if (skinId !== clickedItem) {
+          setTimeout(() => {
             videoRef.pause();
-          }
-        }, 50);
+          }, 100); // Slightly longer timeout to ensure frame is displayed
+        }
       }).catch((e) => {
         console.error("Initial video frame loading failed:", e);
       });
@@ -462,9 +465,8 @@ const SkinSelector = () => {
                         loop
                         playsInline
                         preload="auto"
-                        poster={skin.image || ""} // Optional: Add a poster image
+                        poster={skin.image || skin.video + "#t=0.1"} // Use video frame as poster if no image
                         onLoadedData={() => handleVideoLoaded(skin.id)}
-                        // Add this to ensure first frame is shown
                         onCanPlay={(e) => {
                           // Ensure first frame is visible
                           if (isMobile && skin.id !== clickedItem) {
