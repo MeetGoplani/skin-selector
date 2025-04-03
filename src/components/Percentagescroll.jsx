@@ -56,13 +56,13 @@ const PercentageScroll = () => {
   // Calculate position based on scroll and screen size
   // For smaller screens, start higher (2%) and have less movement range
   const topPosition = screenSize === 'large' 
-    ? 5 + (scrollY * 85) // Large screens: Start at 5% and move down to 90%
-    : 2 + (scrollY * 40); // Smaller screens: Start at 2% and move down to 42%
+    ? 3 + (scrollY * 85) // Large screens: Start at 3% instead of 5%
+    : 3 + (scrollY * 40); // Smaller screens: Also start at 3%
   
   // CSS for the percentage symbols
   const percentageStyle = {
     position: 'fixed',
-    top: isLoaded ? `${topPosition}%` : (screenSize === 'large' ? '5%' : '2%'),
+    top: isLoaded ? `${topPosition}%` : (screenSize === 'large' ? '3%' : '3%'),
     transform: 'translateY(-50%)',
     fontSize: '2rem',
     fontWeight: 'bold',
@@ -79,7 +79,7 @@ const PercentageScroll = () => {
       <div 
         style={{ 
           ...percentageStyle, 
-          left: '0rem',
+          left: screenSize === 'large' ? '1rem' : '0.5rem',
         }}
       >
         <img
@@ -87,6 +87,7 @@ const PercentageScroll = () => {
             alt="Left Animation"
             className="w-16 h-16 sm:w-24 sm:h-24 md:w-16 md:h-16 lg:w-48 lg:h-48"
             onLoad={() => setIsLoaded(true)}
+            style={{ maxWidth: '100%', height: 'auto' }} // Ensure image is responsive
           />
       </div>
       
@@ -94,13 +95,14 @@ const PercentageScroll = () => {
       <div 
         style={{ 
           ...percentageStyle, 
-          right: '0rem',
+          right: screenSize === 'large' ? '1rem' : '0.5rem', // Add some padding from the edge
         }}
       >
         <img
             src="/images/percentage.gif"
             alt="Right Animation"
             className="w-16 h-16 sm:w-24 sm:h-24 md:w-16 md:h-16 lg:w-48 lg:h-48"
+            style={{ maxWidth: '100%', height: 'auto' }} // Ensure image is responsive
           />
       </div>
     </>
