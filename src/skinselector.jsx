@@ -232,17 +232,17 @@ const SkinSelector = () => {
       // Set the current time to 0 to show the first frame
       videoRef.currentTime = 0;
       
-      // Play briefly to ensure the frame is loaded, then pause immediately
-      videoRef.muted = true;
-      videoRef.play().then(() => {
-        // If this isn't the clicked item, pause it after showing first frame
-        if (skinId !== clickedItem) {
-          setTimeout(() => {
-            videoRef.pause();
-          }, 0); // Slightly longer timeout to ensure frame is displayed
+      // Use requestAnimationFrame for smoother rendering
+      requestAnimationFrame(() => {
+        // Only play if this is the clicked item
+        if (skinId === clickedItem) {
+          videoRef.muted = false;
+          videoRef.play().catch(e => {
+            if (e.name !== "AbortError" && e.name !== "NotAllowedError") {
+              console.error("Video playback failed:", e);
+            }
+          });
         }
-      }).catch((e) => {
-        console.error("Initial video frame loading failed:", e);
       });
     }
   };
@@ -388,6 +388,24 @@ const SkinSelector = () => {
     }
   }, [activeTab, visibleItems, isMobile]);
 
+  // Add this new useEffect to ensure all videos show their first frame on initial load
+  useEffect(() => {
+    if (isMobile) {
+      // Force all videos to show their first frame on initial load
+      setTimeout(() => {
+        const currentSkins = getCurrentSkins().slice(0, visibleItems);
+        currentSkins.forEach((skin) => {
+          const videoRef = videoRefs.current[skin.id];
+          if (videoRef) {
+            // Just set to first frame without playing
+            videoRef.currentTime = 0;
+            videoRef.muted = true;
+          }
+        });
+      }, 300); // Small delay to ensure refs are available
+    }
+  }, [visibleItems, activeTab, isMobile]);
+
   // Modify the grid layout section to include infinite scroll
   return (
     <>
@@ -464,16 +482,13 @@ const SkinSelector = () => {
                         muted
                         loop
                         playsInline
-                        preload="auto"
-                        poster={skin.image || skin.video + "#t=0.1"} // Use video frame as poster if no image
-                        onLoadedData={() => handleVideoLoaded(skin.id)}
-                        onCanPlay={(e) => {
-                          // Ensure first frame is visible
-                          if (isMobile && skin.id !== clickedItem) {
-                            const video = e.target;
-                            video.currentTime = 0;
-                          }
+                        preload="metadata"
+                        poster={skin.image || ""}
+                        onLoadedMetadata={(e) => {
+                          // Set to first frame immediately
+                          e.target.currentTime = 0;
                         }}
+                        onLoadedData={() => handleVideoLoaded(skin.id)}
                       />
                     </div>
                   </div>
