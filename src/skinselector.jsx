@@ -137,13 +137,20 @@ const SkinSelector = () => {
           if (!videoRef) return;
 
           if (entry.isIntersecting) {
-            // Play video when it comes into view (muted)
-            videoRef.muted = true;
-            videoRef.play().catch((e) => {
-              if (e.name !== "AbortError") {
-                console.error("Auto-play failed:", e);
+            // On mobile, only play the clicked video
+            if (skin === clickedItem) {
+              videoRef.muted = false;
+              videoRef.play().catch((e) => {
+                if (e.name !== "AbortError") {
+                  console.error("Auto-play failed:", e);
+                }
+              });
+            } else {
+              // For non-clicked videos, just ensure they're paused
+              if (!videoRef.paused) {
+                videoRef.pause();
               }
-            });
+            }
           } else {
             // Pause video when out of view (unless it's the clicked one)
             if (skin !== clickedItem && !videoRef.paused) {
@@ -203,8 +210,11 @@ const SkinSelector = () => {
           videoRef.currentTime = 0;
         }
       } else if (isMobile && skin.id !== clickedItem) {
-        // On mobile: other videos should be muted but still play for preview
-        videoRef.muted = true;
+        // On mobile: pause all other videos
+        if (!videoRef.paused) {
+          videoRef.pause();
+          videoRef.currentTime = 0;
+        }
       }
     });
   }, [hoveredItem, clickedItem, activeTab, isMobile]);
@@ -216,14 +226,12 @@ const SkinSelector = () => {
       [skinId]: true,
     }));
 
+    // Don't auto-play videos on mobile, only show the first frame
     const videoRef = videoRefs.current[skinId];
     if (videoRef && isMobile) {
-      videoRef.muted = true;
-      videoRef.play().catch((e) => {
-        if (e.name !== "AbortError") {
-          console.error("Initial video playback failed:", e);
-        }
-      });
+      // Just load the first frame but don't play
+      videoRef.currentTime = 0;
+      videoRef.pause();
     }
   };
 
@@ -351,21 +359,21 @@ const SkinSelector = () => {
     // Clear previous clicked item when tab changes
     setClickedItem(null);
 
-    // Start videos for newly visible items
-    setTimeout(() => {
-      const currentSkins = getCurrentSkins().slice(0, visibleItems);
-      currentSkins.forEach((skin) => {
-        const videoRef = videoRefs.current[skin.id];
-        if (videoRef && isMobile) {
-          videoRef.muted = true;
-          videoRef.play().catch((e) => {
-            if (e.name !== "AbortError") {
-              console.error("Initial video playback failed:", e);
-            }
-          });
-        }
-      });
-    }, 300);
+    // For mobile, don't auto-start videos
+    if (!isMobile) {
+      // Only for desktop: start videos for newly visible items when hovered
+      setTimeout(() => {
+        const currentSkins = getCurrentSkins().slice(0, visibleItems);
+        currentSkins.forEach((skin) => {
+          const videoRef = videoRefs.current[skin.id];
+          if (videoRef) {
+            // Ensure videos are paused initially
+            videoRef.pause();
+            videoRef.currentTime = 0;
+          }
+        });
+      }, 300);
+    }
   }, [activeTab, visibleItems, isMobile]);
 
   // Modify the grid layout section to include infinite scroll
