@@ -56,13 +56,13 @@ const PercentageScroll = () => {
   // Calculate position based on scroll and screen size
   // For smaller screens, start higher (2%) and have less movement range
   const topPosition = screenSize === 'large' 
-    ? 3 + (scrollY * 85) // Large screens: Start at 3% instead of 5%
-    : 3 + (scrollY * 40); // Smaller screens: Also start at 3%
+    ? 5 + (scrollY * 85) // Large screens: Start at 5% and move down to 90%
+    : 5 + (scrollY * 40); // Smaller screens: Start at 5% instead of 2% and move down to 45%
   
   // CSS for the percentage symbols
   const percentageStyle = {
     position: 'fixed',
-    top: isLoaded ? `${topPosition}%` : (screenSize === 'large' ? '3%' : '3%'),
+    top: isLoaded ? `${topPosition}%` : (screenSize === 'large' ? '5%' : '5%'),
     transform: 'translateY(-50%)',
     fontSize: '2rem',
     fontWeight: 'bold',
