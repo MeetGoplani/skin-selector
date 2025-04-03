@@ -346,7 +346,6 @@ const SkinSelector = () => {
                           muted
                           loop
                           playsInline
-                          preload="auto" // Add preload attribute to load videos immediately
                           onLoadedData={() =>
                             setLoadedVideos((prev) => ({
                               ...prev,
