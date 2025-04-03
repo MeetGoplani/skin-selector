@@ -239,7 +239,7 @@ const SkinSelector = () => {
         if (skinId !== clickedItem) {
           setTimeout(() => {
             videoRef.pause();
-          }, 100); // Slightly longer timeout to ensure frame is displayed
+          }, 50); // Slightly longer timeout to ensure frame is displayed
         }
       }).catch((e) => {
         console.error("Initial video frame loading failed:", e);
