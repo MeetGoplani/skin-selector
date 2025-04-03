@@ -220,7 +220,6 @@ const SkinSelector = () => {
   }, [hoveredItem, clickedItem, activeTab, isMobile]);
 
   // Start playing videos (muted) when they're loaded
-  // Update the handleVideoLoaded function
   const handleVideoLoaded = (skinId) => {
     setLoadedVideos((prev) => ({
       ...prev,
@@ -230,14 +229,21 @@ const SkinSelector = () => {
     // For mobile, ensure the first frame is visible
     const videoRef = videoRefs.current[skinId];
     if (videoRef && isMobile) {
-      // Set to first frame
-      videoRef.currentTime = 0.1;
-      videoRef.muted = true;
+      // Set the current time to 0 to show the first frame
+      videoRef.currentTime = 0;
       
-      // Only play if this is the clicked item
-      if (skinId === clickedItem) {
-        videoRef.play().catch(e => console.error("Video play failed:", e));
-      }
+      // Play briefly to ensure the frame is loaded, then pause immediately
+      videoRef.muted = true;
+      videoRef.play().then(() => {
+        // If this isn't the clicked item, pause it after showing first frame
+        if (skinId !== clickedItem) {
+          setTimeout(() => {
+            videoRef.pause();
+          }, 100); // Slightly longer timeout to ensure frame is displayed
+        }
+      }).catch((e) => {
+        console.error("Initial video frame loading failed:", e);
+      });
     }
   };
 
@@ -248,7 +254,7 @@ const SkinSelector = () => {
         setSelectedSkin(skin);
         setClickedItem(null);
       } else {
-        // First click - unmute this video and pause all others
+        // First click - unmute this video and mute all others
         const currentSkins = getCurrentSkins();
         currentSkins.forEach((item) => {
           const videoRef = videoRefs.current[item.id];
@@ -256,12 +262,12 @@ const SkinSelector = () => {
             if (item.id === skin.id) {
               // Unmute and ensure this one is playing
               videoRef.muted = false;
-              videoRef.play().catch((e) => console.error("Video playback failed:", e));
+              videoRef
+                .play()
+                .catch((e) => console.error("Video playback failed:", e));
             } else {
-              // Pause other videos immediately without refreshing
-              if (!videoRef.paused) {
-                videoRef.pause();
-              }
+              // Make sure others are muted
+              videoRef.muted = true;
             }
           }
         });
@@ -459,12 +465,13 @@ const SkinSelector = () => {
                         loop
                         playsInline
                         preload="auto"
-                        poster={skin.image || ""}
+                        poster={skin.image || skin.video + "#t=0.1"} // Use video frame as poster if no image
                         onLoadedData={() => handleVideoLoaded(skin.id)}
-                        onLoadedMetadata={(e) => {
-                          // Set to first frame immediately when metadata loads
+                        onCanPlay={(e) => {
+                          // Ensure first frame is visible
                           if (isMobile && skin.id !== clickedItem) {
-                            e.target.currentTime = 0.1;
+                            const video = e.target;
+                            video.currentTime = 0;
                           }
                         }}
                       />
