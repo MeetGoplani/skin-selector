@@ -335,6 +335,8 @@ const SkinSelector = () => {
                   onMouseEnter={() => handleMouseEnter(skin)}
                   onMouseLeave={handleMouseLeave}
                 >
+                  
+                  
                   <div className="w-full h-full relative">
                     <div className="absolute inset-0 bg-black rounded-t-xl overflow-hidden">
                       {!loadedVideos[skin.id] && <div className="shimmer" />}
@@ -346,6 +348,10 @@ const SkinSelector = () => {
                           muted
                           loop
                           playsInline
+                          // Add preload attribute to ensure videos load immediately
+                          preload="auto"
+                          // Add poster attribute as fallback while video loads
+                          poster={skin.poster || ''}
                           onLoadedData={() =>
                             setLoadedVideos((prev) => ({
                               ...prev,
@@ -356,7 +362,7 @@ const SkinSelector = () => {
                       </Suspense>
                     </div>
                   </div>
-
+                  
                   {/* Text label with silver gradient */}
                   <div className="h-[30px] w-full flex items-center justify-center bg-[#0012ff50] relative overflow-hidden pt-2 pb-2 ">
                     <div className="absolute inset-0 animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-[#ffffff20] to-transparent"></div>
