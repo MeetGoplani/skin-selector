@@ -337,21 +337,20 @@ const SkinSelector = () => {
                 >
                   
                   
+          
                   <div className="w-full h-full relative">
                     <div className="absolute inset-0 bg-black rounded-t-xl overflow-hidden">
                       {!loadedVideos[skin.id] && <div className="shimmer" />}
-                      <Suspense fallback={<div className="shimmer" />}>
-                        <LazyVideo
+                      {/* Replace Suspense/lazy loading with direct video element for mobile */}
+                      {isMobile ? (
+                        <video
                           ref={(el) => (videoRefs.current[skin.id] = el)}
                           src={skin.video}
                           className="w-full h-full object-cover"
                           muted
                           loop
                           playsInline
-                          // Add preload attribute to ensure videos load immediately
                           preload="auto"
-                          // Add poster attribute as fallback while video loads
-                          poster={skin.poster || ''}
                           onLoadedData={() =>
                             setLoadedVideos((prev) => ({
                               ...prev,
@@ -359,7 +358,25 @@ const SkinSelector = () => {
                             }))
                           }
                         />
-                      </Suspense>
+                      ) : (
+                        <Suspense fallback={<div className="shimmer" />}>
+                          <LazyVideo
+                            ref={(el) => (videoRefs.current[skin.id] = el)}
+                            src={skin.video}
+                            className="w-full h-full object-cover"
+                            muted
+                            loop
+                            playsInline
+                            preload="auto"
+                            onLoadedData={() =>
+                              setLoadedVideos((prev) => ({
+                                ...prev,
+                                [skin.id]: true,
+                              }))
+                            }
+                          />
+                        </Suspense>
+                      )}
                     </div>
                   </div>
                   
