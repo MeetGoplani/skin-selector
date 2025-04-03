@@ -220,17 +220,18 @@ const SkinSelector = () => {
   }, [hoveredItem, clickedItem, activeTab, isMobile]);
 
   // Start playing videos (muted) when they're loaded
+  // Update the handleVideoLoaded function
   const handleVideoLoaded = (skinId) => {
     setLoadedVideos((prev) => ({
       ...prev,
       [skinId]: true,
     }));
 
-    // For mobile, ensure the first frame is visible without playing
+    // For mobile, ensure the first frame is visible
     const videoRef = videoRefs.current[skinId];
     if (videoRef && isMobile) {
-      // Set the current time to 0 to show the first frame
-      videoRef.currentTime = 0;
+      // Set to first frame
+      videoRef.currentTime = 0.1;
       videoRef.muted = true;
       
       // Only play if this is the clicked item
@@ -457,13 +458,13 @@ const SkinSelector = () => {
                         muted
                         loop
                         playsInline
-                        preload="metadata"
+                        preload="auto"
                         poster={skin.image || ""}
                         onLoadedData={() => handleVideoLoaded(skin.id)}
-                        onCanPlay={(e) => {
-                          // Just ensure the video is ready without playing
+                        onLoadedMetadata={(e) => {
+                          // Set to first frame immediately when metadata loads
                           if (isMobile && skin.id !== clickedItem) {
-                            e.target.currentTime = 0;
+                            e.target.currentTime = 0.1;
                           }
                         }}
                       />
