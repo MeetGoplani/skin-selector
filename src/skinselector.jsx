@@ -135,14 +135,14 @@ const SkinSelector = () => {
       if (!videoRef) return;
 
       if (!isMobile && hoveredItem === skin.id) {
-        // Play video when hovered
+        // Play video when hovered on desktop
         videoRef.play().catch((e) => {
           if (e.name !== "AbortError") {
             console.error("Video playback failed:", e);
           }
         });
       } else if (isMobile && clickedItem === skin.id) {
-        // Play video when clicked
+        // Play video when clicked on mobile
         videoRef.play().catch((e) => {
           if (e.name !== "AbortError") {
             console.error("Video playback failed:", e);
@@ -161,9 +161,11 @@ const SkinSelector = () => {
   const handleItemInteraction = (skin) => {
     if (isMobile) {
       if (clickedItem === skin.id) {
+        // Second click - open popup
         setSelectedSkin(skin);
         setClickedItem(null);
       } else {
+        // First click - play video
         setClickedItem(skin.id);
         const videoRef = videoRefs.current[skin.id];
         if (videoRef) {
@@ -344,6 +346,7 @@ const SkinSelector = () => {
                           muted
                           loop
                           playsInline
+                          preload="auto" // Add preload attribute to load videos immediately
                           onLoadedData={() =>
                             setLoadedVideos((prev) => ({
                               ...prev,
