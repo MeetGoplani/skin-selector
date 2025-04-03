@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom";
 import { skinsByTab } from "./lib/videoData";
 import { Link } from "react-router-dom";
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy } from "react";
 
 // Lazy load the video component
-const LazyVideo = lazy(() => import('./components/LazyVideo'));
+const LazyVideo = lazy(() => import("./components/LazyVideo"));
 
 const SkinSelector = () => {
   // Add this at the beginning of your component, after the imports
@@ -57,7 +57,6 @@ const SkinSelector = () => {
   const [hoveredItem, setHoveredItem] = useState(null);
   const [loadedVideos, setLoadedVideos] = useState({});
   const videoRefs = useRef({});
-  // Remove audioRef
 
   // Check screen size
   useEffect(() => {
@@ -82,8 +81,6 @@ const SkinSelector = () => {
   const isMobile = screenSize !== "large";
 
   const tabs = ["ALL", "OG", "MILAURA", "GLORP", "HONORARI", "OTHER"];
-
-  // Define different skins for each tab - all using videos
 
   // Get current skins based on active tab
   const getCurrentSkins = () => {
@@ -126,6 +123,57 @@ const SkinSelector = () => {
     });
   };
 
+  // Setup IntersectionObserver for mobile devices only
+  const setupIntersectionObserver = () => {
+    if (!("IntersectionObserver" in window) || !isMobile) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const skin = entry.target.dataset.skinId;
+          if (!skin) return;
+
+          const videoRef = videoRefs.current[skin];
+          if (!videoRef) return;
+
+          if (entry.isIntersecting) {
+            // Play video when it comes into view (mobile only)
+            if (isMobile) {
+              videoRef.muted = true; // Keep muted on mobile until clicked
+              videoRef.play().catch((e) => {
+                if (e.name !== "AbortError") {
+                  console.error("Auto-play failed:", e);
+                }
+              });
+            }
+          } else if (isMobile && clickedItem !== skin) {
+            // Pause video when out of view on mobile if it's not the clicked item
+            if (!videoRef.paused) {
+              videoRef.pause();
+            }
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    // Observe all skin elements
+    const skinElements = document.querySelectorAll(".skin-item");
+    skinElements.forEach((el) => observer.observe(el));
+
+    return observer;
+  };
+
+  // Setup observer when component mounts or tab changes (mobile only)
+  useEffect(() => {
+    if (!isMobile) return; // Only for mobile devices
+
+    const observer = setupIntersectionObserver();
+    return () => {
+      if (observer) observer.disconnect();
+    };
+  }, [activeTab, isMobile]);
+
   // Handle video playback on hover or click
   useEffect(() => {
     const currentSkins = getCurrentSkins();
@@ -136,20 +184,32 @@ const SkinSelector = () => {
 
       if (!isMobile && hoveredItem === skin.id) {
         // Play video when hovered on desktop
+        videoRef.muted = false;
         videoRef.play().catch((e) => {
           if (e.name !== "AbortError") {
             console.error("Video playback failed:", e);
           }
         });
       } else if (isMobile && clickedItem === skin.id) {
-        // Play video when clicked on mobile
+        // Play with sound when clicked on mobile
+        videoRef.muted = false;
         videoRef.play().catch((e) => {
           if (e.name !== "AbortError") {
             console.error("Video playback failed:", e);
           }
         });
+      } else if (isMobile) {
+        // On mobile: keep playing but muted (for preview)
+        videoRef.muted = true;
+        if (videoRef.paused) {
+          videoRef.play().catch((e) => {
+            if (e.name !== "AbortError") {
+              console.error("Preview playback failed:", e);
+            }
+          });
+        }
       } else {
-        // Only pause and reset if this video was previously playing
+        // On desktop: pause when not hovered
         if (!videoRef.paused) {
           videoRef.pause();
           videoRef.currentTime = 0;
@@ -165,12 +225,14 @@ const SkinSelector = () => {
         setSelectedSkin(skin);
         setClickedItem(null);
       } else {
-        // First click - play video
+        // First click - unmute video and play with sound
         setClickedItem(skin.id);
         const videoRef = videoRefs.current[skin.id];
         if (videoRef) {
           videoRef.muted = false;
-          videoRef.play().catch(e => console.error("Video playback failed:", e));
+          videoRef
+            .play()
+            .catch((e) => console.error("Video playback failed:", e));
         }
       }
     } else {
@@ -178,15 +240,15 @@ const SkinSelector = () => {
     }
   };
 
-  // Remove playAudio function
-
   const handleMouseEnter = (skin) => {
     if (!isMobile) {
       setHoveredItem(skin.id);
       const videoRef = videoRefs.current[skin.id];
       if (videoRef) {
         videoRef.muted = false;
-        videoRef.play().catch(e => console.error("Video playback failed:", e));
+        videoRef
+          .play()
+          .catch((e) => console.error("Video playback failed:", e));
       }
     }
   };
@@ -251,30 +313,49 @@ const SkinSelector = () => {
       // Save current scroll position
       const scrollY = window.scrollY;
       // Disable scrolling on body
-      document.body.style.position = 'fixed';
+      document.body.style.position = "fixed";
       document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = '100%';
-      
+      document.body.style.width = "100%";
+
       // Restore scrolling when popup closes
       return () => {
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.width = "";
         window.scrollTo(0, scrollY);
       };
     }
   }, [selectedSkin]);
 
+  // Modified useEffect to auto-play videos on mobile when elements are visible
+  useEffect(() => {
+    if (!isMobile) return; // Only for mobile devices
+
+    // Start videos for initial visible items
+    const startInitialVideos = () => {
+      const currentSkins = getCurrentSkins().slice(0, visibleItems);
+      currentSkins.forEach((skin) => {
+        const videoRef = videoRefs.current[skin.id];
+        if (videoRef) {
+          videoRef.muted = true; // Start muted on mobile
+          videoRef.play().catch((e) => {
+            if (e.name !== "AbortError") {
+              console.error("Initial video playback failed:", e);
+            }
+          });
+        }
+      });
+    };
+
+    // Wait a moment for the videos to be rendered
+    const timer = setTimeout(startInitialVideos, 500);
+    return () => clearTimeout(timer);
+  }, [activeTab, visibleItems, isMobile]);
+
   // Modify the grid layout section to include infinite scroll
   return (
     <>
-      {/* Header */}
-  
-     
       <div className="flex flex-col items-center min-h-screen w-full bg-black text-white overflow-y-auto pb-16 m-0">
-        {/* Remove this line */}
-        {/* <audio ref={audioRef} className="hidden" /> */}
-
         {/* Tabs layout - 3x2 grid on small screens, original layout on larger screens */}
         <div
           className={`${
@@ -330,56 +411,34 @@ const SkinSelector = () => {
               .map((skin) => (
                 <div
                   key={skin.id}
-                  className="relative flex flex-1 size-full flex-col items-center border-4 border-[#0012ff] rounded-2xl cursor-pointer transition-transform hover:scale-105 w-full max-w-48 h-60"
+                  className="relative flex flex-1 size-full flex-col items-center border-4 border-[#0012ff] rounded-2xl cursor-pointer transition-transform hover:scale-105 w-full max-w-48 h-60 skin-item"
+                  data-skin-id={skin.id}
                   onClick={() => handleItemInteraction(skin)}
                   onMouseEnter={() => handleMouseEnter(skin)}
                   onMouseLeave={handleMouseLeave}
                 >
-                  
-                  
-          
                   <div className="w-full h-full relative">
                     <div className="absolute inset-0 bg-black rounded-t-xl overflow-hidden">
                       {!loadedVideos[skin.id] && <div className="shimmer" />}
-                      {/* Replace Suspense/lazy loading with direct video element for mobile */}
-                      {isMobile ? (
-                        <video
-                          ref={(el) => (videoRefs.current[skin.id] = el)}
-                          src={skin.video}
-                          className="w-full h-full object-cover"
-                          muted
-                          loop
-                          playsInline
-                          preload="auto"
-                          onLoadedData={() =>
-                            setLoadedVideos((prev) => ({
-                              ...prev,
-                              [skin.id]: true,
-                            }))
-                          }
-                        />
-                      ) : (
-                        <Suspense fallback={<div className="shimmer" />}>
-                          <LazyVideo
-                            ref={(el) => (videoRefs.current[skin.id] = el)}
-                            src={skin.video}
-                            className="w-full h-full object-cover"
-                            muted
-                            loop
-                            playsInline
-                            preload="auto"
-                            onLoadedData={() =>
-                              setLoadedVideos((prev) => ({
-                                ...prev,
-                                [skin.id]: true,
-                              }))
-                            }
-                          />
-                        </Suspense>
-                      )}
+                      {/* Always use direct video element for better control */}
+                      <video
+                        ref={(el) => (videoRefs.current[skin.id] = el)}
+                        src={skin.video}
+                        className="w-full h-full object-cover"
+                        muted
+                        loop
+                        playsInline
+                        preload="auto"
+                        onLoadedData={() =>
+                          setLoadedVideos((prev) => ({
+                            ...prev,
+                            [skin.id]: true,
+                          }))
+                        }
+                      />
                     </div>
                   </div>
-                  
+
                   {/* Text label with silver gradient */}
                   <div className="h-[30px] w-full flex items-center justify-center bg-[#0012ff50] relative overflow-hidden pt-2 pb-2 ">
                     <div className="absolute inset-0 animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-[#ffffff20] to-transparent"></div>
@@ -395,8 +454,6 @@ const SkinSelector = () => {
               ))}
           </div>
         </div>
-
-        {/* Grid Layout - Adaptive based on screen size */}
 
         {/* Loading indicator and observer target */}
         {getCurrentSkins().length > visibleItems && (
@@ -416,58 +473,59 @@ const SkinSelector = () => {
         <div className="h-16"></div>
 
         {/* Popup Implementation */}
-        {selectedSkin && ReactDOM.createPortal(
-          <div 
-            className="fixed inset-0 bg-black bg-opacity-80 flex flex-col items-center justify-center"
-            style={{
-              position: 'fixed', 
-              top: '0', 
-              left: '0', 
-              right: '0', 
-              bottom: '0',
-              zIndex: 999999,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
-          >
-            <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md bg-black p-4 rounded-lg">
-              <button
-                onClick={() => setSelectedSkin(null)}
-                className="text-gray-300 !bg-black hover:text-white text-lg sm:text-xl absolute -left-8 -top-8 sm:-left-20"
-              >
-                ✕
-              </button>
-              <h2 className="text-xl sm:text-2xl text-[#00ffce] font-bold truncate text-center mb-4">
-                {selectedSkin.id}
-              </h2>
-            
-              <div className="bg-gray-900 border-4 border-[#0012ff] rounded-lg w-full">
-                <div className="aspect-square w-full">
-                  <video
-                    src={selectedSkin.video}
-                    className="w-full h-full object-cover rounded-lg"
-                    controls
-                    autoPlay
-                    loop
-                    playsInline
-                  />
-                </div>
-              </div>
-              {selectedSkin.link && (
-                <a
-                  href={selectedSkin.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block !text-[#e5a700] hover:text-cyan-300 underline mt-4 break-all text-center w-full px-4"
+        {selectedSkin &&
+          ReactDOM.createPortal(
+            <div
+              className="fixed inset-0 bg-black bg-opacity-80 flex flex-col items-center justify-center"
+              style={{
+                position: "fixed",
+                top: "0",
+                left: "0",
+                right: "0",
+                bottom: "0",
+                zIndex: 999999,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md bg-black p-4 rounded-lg">
+                <button
+                  onClick={() => setSelectedSkin(null)}
+                  className="text-gray-300 !bg-black hover:text-white text-lg sm:text-xl absolute -left-8 -top-8 sm:-left-20"
                 >
-                  {selectedSkin.link}
-                </a>
-              )}
-            </div>
-          </div>,
-          document.body
-        )}
+                  ✕
+                </button>
+                <h2 className="text-xl sm:text-2xl text-[#00ffce] font-bold truncate text-center mb-4">
+                  {selectedSkin.id}
+                </h2>
+
+                <div className="bg-gray-900 border-4 border-[#0012ff] rounded-lg w-full">
+                  <div className="aspect-square w-full">
+                    <video
+                      src={selectedSkin.video}
+                      className="w-full h-full object-cover rounded-lg"
+                      controls
+                      autoPlay
+                      loop
+                      playsInline
+                    />
+                  </div>
+                </div>
+                {selectedSkin.link && (
+                  <a
+                    href={selectedSkin.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block !text-[#e5a700] hover:text-cyan-300 underline mt-4 break-all text-center w-full px-4"
+                  >
+                    {selectedSkin.link}
+                  </a>
+                )}
+              </div>
+            </div>,
+            document.body
+          )}
       </div>
     </>
   );
