@@ -103,6 +103,12 @@ body{
   }
 }
 
+@media (min-width: 1440px) {
+  #root {
+    transform: scale(2);
+  }
+}
+
 
 body {
   margin: 0;
